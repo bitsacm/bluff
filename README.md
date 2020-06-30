@@ -97,7 +97,7 @@ We have provided a boilerplate for the backend code which you must build upon.
     - End of game - delete all players from the array. They will be redirected to the start page by the frontend.
     
  - #### Step 3 (1 week)
-  - Now you will work on the client side code to add event listeners and emitters like you did at the server side.
-  - Execute relevant functions on the frontend to make this a real time multiplayer game and transfer relevant information to the server to be passed onto other users.
+    - Now you will work on the client side code to add event listeners and emitters like you did at the server side.
+    - Execute relevant functions on the frontend to make this a real time multiplayer game and transfer relevant information to the server to be passed onto other users.
   
 Congratulations you have a working Bluff game (a project in alpha stage). Its now upto you to find and fix bugs and add features which you would like to have.

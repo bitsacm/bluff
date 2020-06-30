@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 try {
   mongoose.connect(process.env.MONGODB_URL, {
@@ -7,10 +7,10 @@ try {
 		useFindAndModify: false,
 		useUnifiedTopology: true 
 	}).then(async (db) => {
-		console.log('Successfully connected to database :)')
+		console.log('Successfully connected to database :)');
 	}).catch((error) => {
-		console.log('Not able to connect to database :(')
+		console.log('Not able to connect to database :(');
 	})
 } catch (e) {
-	console.log(e)
+	console.log(e);
 }

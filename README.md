@@ -49,10 +49,11 @@ Game Rules - https://en.wikipedia.org/wiki/Cheat_(game) We will follow the Canad
   - To run your code locally, change the extension ".ejs" to ".html" and paste its file path in a web browser.
   - Do NOT forget to change ".html" back to ".ejs" before you deploy your code to heroku.
   - Do NOT add any script imports before the cdnjs.cloudflare script imports. 
-- #### Step 0 (1 day)
+  - You need not focus too much on the UI/UX aspect the website. Just a simple and clear UI should be good for now.
+- #### Step 0 (3 day)
   - Render a deck of 54 cards to the screen (52 + 2 jokers).
   
-- #### Step 1 (2 days)
+- #### Step 1 (4 days)
   - Shuffle a deck for n users(prompt an input when the page opens).
   - Add a deck for every 5th user.
   - eg - 

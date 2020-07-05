@@ -41,6 +41,7 @@ Game Rules - https://en.wikipedia.org/wiki/Cheat_(game) We will follow the Canad
   - Look for socket functions in these repositories, they are responsible for real time information transfer
   - It is recommended that the socket functions be written by backend developers.
 - Github 
+  - Contibution.md in this repository.
   - https://github.com/bitsacm/Slack-Stock-DAG/blob/master/open_source.md
   - Corey Schafer's playlist: https://www.youtube.com/playlist?list=PL-osiE80TeTuRUfjRe54Eea17-YfnOOAx
   
@@ -50,7 +51,7 @@ Game Rules - https://en.wikipedia.org/wiki/Cheat_(game) We will follow the Canad
   - Do NOT forget to change ".html" back to ".ejs" before you deploy your code to heroku.
   - Do NOT add any script imports before the cdnjs.cloudflare script imports. 
   - You need not focus too much on the UI/UX aspect the website. Just a simple and clear UI should be good for now.
-- #### Step 0 (3 day)
+- #### Step 0 (3 days)
   - Render a deck of 54 cards to the screen (52 + 2 jokers).
   
 - #### Step 1 (4 days)
@@ -71,7 +72,7 @@ Game Rules - https://en.wikipedia.org/wiki/Cheat_(game) We will follow the Canad
 - #### Step 3 (5 days)
   - Ask users to choose what do they want to call what they have played. Let them bluff.
   - Store the result which keeps record whether the last player bluffed.
-  - For all turns after after the beginning of a new round just prompt like "player 1 added 3 cards to the stack" as everyone must play the same rank card in a round. (If the round begins with ace of spdes then everyone must add or atleast claim to add aces only to the stack).
+  - For all turns after after the beginning of a new round just prompt like "player 1 added 3 cards to the stack" as everyone must play the same rank card in a round. (If the round begins with ace of spades then everyone must add or atleast claim to add aces only to the stack).
   
 - #### Step 4 (5 days)
   - Allow users to pass. 
@@ -94,11 +95,11 @@ Congratulations you have a working Bluff game (a project in alpha stage). Its no
   
 ### Backend
 We have provided a boilerplate for the backend code which you must build upon.
-- #### Step 1 (1 week)
+- #### Step 1 (7 days)
   - Define a user model
   - Implement Google oauth2.0 logins
   - set and read authentication token in the form of a cookie.
-- #### Step 2 (1 week)
+- #### Step 2 (9 days)
   - Create utils folder which would store information of active users in array containing their usernames and roomnames.
   - Include checks which do not allow duplicate usernnames and do not allow new users into a room once it has 12 users or if the game has begun.
   - Create socket event listeners and emitters for:
@@ -109,7 +110,7 @@ We have provided a boilerplate for the backend code which you must build upon.
     - shuffling of cards in hand
     - End of game - delete all players from the array. They will be redirected to the start page by the frontend.
     
- - #### Step 3 (1 week)
+ - #### Step 3 (9 days)
     - Now you will work on the client side code to add event listeners and emitters like you did at the server side.
     - Create function to shuffle cards when game starts. Send the cards of the player to the frontend along with their usernames and player numbers. The logic for random shuffling of card which the players will recieve is now handled at the server side.
     - Execute relevant functions on the frontend to make this a real time multiplayer game and transfer relevant information to the server to be passed onto other users.

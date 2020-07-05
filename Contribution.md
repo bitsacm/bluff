@@ -32,10 +32,12 @@ To pull the accepted code, you must sync your fork with the main repository
 ```git remote add upstream https://github.com/bitsacm/bluff.git```
 
 Check if upstream was added correctly by running `git remote -v`. You should see  
-```origin  https://github.com/<YOUR USERNAME>/<REPO NAME>.git (fetch)```  
-```origin  https://github.com/<YOUR USERNAME>/<REPO NAME>.git (push)```  
-```upstream     https://github.com/bitsacm/bluff.git (fetch)```  
-```upstream     https://github.com/bitsacm/bluff.git (push)```  
+```
+origin  https://github.com/<YOUR USERNAME>/<REPO NAME>.git (fetch)  
+origin  https://github.com/<YOUR USERNAME>/<REPO NAME>.git (push)   
+upstream     https://github.com/bitsacm/bluff.git (fetch)  
+upstream     https://github.com/bitsacm/bluff.git (push)
+```  
 
 Now, sync your repo  
 ```git fetch upstream```

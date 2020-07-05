@@ -95,7 +95,7 @@ Game Rules - https://en.wikipedia.org/wiki/Cheat_(game) We will follow the Canad
 Congratulations you have a working Bluff game (a project in alpha stage). Its now upto you to find and fix bugs, add features which you would like to have and improve the user experience.
   
 ### Backend
-We have provided a boilerplate for the backend code which you must build upon.
+We have provided a boilerplate for the backend code which you must build upon. Please run `npm install` before beginning any step.
 - #### Step 1 (7 days)
   - Define a user model
   - Implement Google oauth2.0 logins

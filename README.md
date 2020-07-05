@@ -18,7 +18,7 @@ Game Rules - https://en.wikipedia.org/wiki/Cheat_(game) We will follow the Canad
 - Think of it like a competition, the person with the highest score wins!
 
 ### Deploying your submission on Heroku
-  - To make it easier for us to check your code deploy your fork to Heroku (www.heroku.com) by creating an app named `(your-github-username)-bluff` and include the url at the top of your Pull Request description.
+  - To make it easier for us to check your code deploy your fork to Heroku (www.heroku.com) by creating an app named `<your-github-username>-bluff` and include the url at the top of your Pull Request description.
   - For people working with frontend, we have already included the code which would allow you to directly deploy for fork to Heroku (deploy using github). You need not worry about configuring the server for deployment, it should be just a click for you.
   - Main deployment of the main repository will be at https://acm-bluff.herokuapp.com
 

@@ -5,7 +5,7 @@ Game Rules - https://en.wikipedia.org/wiki/Cheat_(game) We will follow the Canad
 
 ### Contribution 
 - Both the backend and frontend of this project are broken down in multiple short steps so that you can learn as you contribute.
-- Each Step will be given a specific time frame with an extra day or two in between day to review Pull requests
+- Each Step will be given a specific time frame with an extra day or two in between to review Pull requests
 - At each step we would like all of you to submit your solution.
 - Your code must be very well documented with proper comments and clear variable naming for it to be accepted. People building upon your code should be able to understand what your code segment does and how it does that.
 - Read more details here in the Contribution.md file - https://github.com/pratham1002/bluff/blob/master/Contribution.md

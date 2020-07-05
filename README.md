@@ -20,6 +20,7 @@ Game Rules - https://en.wikipedia.org/wiki/Cheat_(game) We will follow the Canad
 ### Deploying your submission on Heroku
   - To make it easier for us to check your code deploy your fork to Heroku (www.heroku.com) by creating an app named `<your-github-username>-bluff` and include the url at the top of your Pull Request description.
   - For people working with frontend, we have already included the code which would allow you to directly deploy for fork to Heroku (deploy using github). You need not worry about configuring the server for deployment, it should be just a click for you.
+  - Documentation: https://devcenter.heroku.com/articles/github-integration#:~:text=Heroku%20integrates%20with%20GitHub%20to,to%20the%20specified%20GitHub%20repo.
   - Main deployment of the main repository will be at https://acm-bluff.herokuapp.com
 
 ### Project Structure
@@ -98,6 +99,7 @@ We have provided a boilerplate for the backend code which you must build upon.
 - #### Step 1 (7 days)
   - Define a user model
   - Implement Google oauth2.0 logins
+  - Setup a Mongo Atlas cloud database. Add the the database url as an environment variable in your heroku deployment. https://devcenter.heroku.com/articles/config-vars
   - set and read authentication token in the form of a cookie.
 - #### Step 2 (9 days)
   - Create utils folder which would store information of active users in array containing their usernames and roomnames.

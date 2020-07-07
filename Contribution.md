@@ -17,7 +17,7 @@ Before you write any code, do the following:
 - **Checkout to this newly created branch**:  
 `git checkout <branch_name>`.
 
-**All the code you write must be inside this branch**. Once you are done writing code for a particular step/issue, push this branch. 
+**All the code you write must be inside this branch**. Stage and commit your changes. Once you are done writing code for a particular step/issue, push this branch. 
 
 ```git push origin <branch_name>```
 

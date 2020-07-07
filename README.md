@@ -96,9 +96,8 @@ We have provided a boilerplate for the backend code which you must build upon. P
   - Setup a Mongo Atlas cloud database. Add the the database url as an [environment variable](https://devcenter.heroku.com/articles/config-vars) in your heroku deployment. 
   - set and read authentication token in the form of a cookie.
 - #### Step 2 (9 days)
-  - Create utils folder which would store information of active users in array containing their usernames and roomnames.
   - Include checks which do not allow duplicate usernnames and do not allow new users into a room once it has 12 users or if the game has begun.
-  - Create socket event listeners and emitters for:
+  - Handle these events:
     - new player joining a game
     - start game
       - This should return a list of usernames in order they joined the game and the room should be closed to new players.
@@ -107,7 +106,7 @@ We have provided a boilerplate for the backend code which you must build upon. P
     - End of game. Players will be redirected to the start page by the frontend.
     
  - #### Step 3 (9 days)
-    - Create function to shuffle cards when game starts. Send the cards of the player to the frontend along with their usernames and player numbers. The logic for random shuffling of card which the players will recieve is now handled at the server side.
+    - Create a function to shuffle cards when game starts. Send the cards of the player to the frontend along with their usernames and player numbers. The logic for random shuffling of card which the players will recieve is now handled at the server side.
     - Figure out how to make this a real time multiplayer game and transfer relevant information to the server to be passed onto other users in real time.
   
 Congratulations you have a working Bluff game (a project in alpha stage). Its now upto you to find and fix bugs and add features which you would like to have.

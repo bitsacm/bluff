@@ -107,6 +107,6 @@ We have provided a boilerplate for the backend code which you must build upon. P
     
  - #### Step 3 (9 days)
     - Create a function to shuffle cards when game starts. Send the cards of the player to the frontend along with their usernames and player numbers. The logic for random shuffling of card which the players will recieve is now handled at the server side.
-    - Figure out how to make this a real time multiplayer game and transfer relevant information to the server to be passed onto other users in real time.
+    - Figure out how to make this a real time multiplayer game and transfer relevant information to other users in real time.
   
 Congratulations you have a working Bluff game (a project in alpha stage). Its now upto you to find and fix bugs and add features which you would like to have.

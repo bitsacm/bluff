@@ -46,7 +46,7 @@ Make sure you are on master branch
 ```git checkout master```
 
 Merge the  incoming changes  
-```git rebase upstream/master```
+```git pull upstream master```
 
 Force push the changes to your fork to keep the working tree clean and avoid conflicts. (-f flag is for force push)  
 ```git push -f origin master```

@@ -7,6 +7,7 @@ Read this section if this is your first time contributing to an open source proj
 To be able to contribute to this project, you need to be familiar with atleast: 
  - Using basic git commands like: `git clone`, `git push`, `git pull`, `git commit`, etc. You can learn the other commands on the go as you write more code and make more mistakes.
  - GitHub's Pull Request model: https://guides.github.com/introduction/flow/
+ - Add your name to the Contributors.md of this project like this [tutorial](https://github.com/firstcontributions/first-contributions).
 
 Before you write any code, do the following: 
 - **Fork this repo**. You can find the fork button on the top right side of the screen. Forking means creating a copy of someone's repo so that you can extend upon it while giving them proper credits.

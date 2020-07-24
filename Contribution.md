@@ -20,7 +20,7 @@ Before you write any code, do the following:
 
 **All the code you write must be inside this branch**. Stage and commit your changes. Once you are done writing code for a particular step/issue, push this branch. 
 
-```git push origin <branch_name>```
+```git push -u origin <branch_name>```
 
 Next, open the repo on GitHub and create a pull request with the branch you just pushed. Inside the PR, explain everything you have done in clear and concise statements, preferably in present tense. 
 

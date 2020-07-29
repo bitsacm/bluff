@@ -4,7 +4,7 @@
   "description": "### File structure",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node server/index.js",
     "dev": "env-cmd config/dev.env nodemon server/index.js"
   },
   "repository": {

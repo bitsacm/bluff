@@ -1,1 +1,40 @@
 /* init */
+.card {
+	padding: 10px;
+	border: solid 1px #808080;
+	background-color: white;
+	display: inline-block;
+	border-radius: 10px;
+	font-size: 14px;
+	color:black;
+	margin: 3px;
+}
+
+.card .value {
+	font-size:20px;
+	font-family: sans-serif;
+	text-align: left;
+}
+
+.card .suit {  /*Setting the backgroung image as spades part of the card image by specifying height and width */
+	background-image: url('images/card.png');
+	height: 100px;
+	width: 90px;
+}
+
+.card .diamonds { /*Changing the part of background image seen */
+	background-position-y: 100px;  /*Horizontal edge moves down by 100px and width is by deafult set,so diamonds image wil be visible */
+}
+
+.card .hearts {  /*Changing the part of background image seen */
+	background-position-x: 90px;  /*Vertical edge moves right by 90px and height is by default set,so hearts image will be visible */
+}
+
+.card .clubs {  /*Changing the part of background image seen */
+	background-position-x:90px;  /*Vertical edge moves right by 90px */
+	background-position-y:100px; /*Horizontal edge moves down by 100px */
+}
+
+.card .Joker {  /*Changing backgroung image to joker for the joker suit */
+	background-image: url('images/joker.jpg');
+}

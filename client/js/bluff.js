@@ -1,55 +1,74 @@
 // init
-var suits = ["spades", "diamonds", "clubs", "hearts"]; //An Array of card suites
-var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]; //This will hold all possible values of cards except the jokers
+//An Array of card suites
+const suits = ["spades", "diamonds", "clubs", "hearts"];
+//This will hold all possible values of cards except the jokers
+const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 
-function createDeck() {   //It will return a new deck of cards to the caller
+//It will return a new deck of cards to the caller
+function createDeck() {   
 
-	var deck = new Array();
+	let deck = new Array();
 
-	for(var i = 0; i < suits.length; i++) {
+	for(let i = 0; i < suits.length; i++) {
 
-		for(var j = 0; j < values.length; j++) {
+		for(let j = 0; j < values.length; j++) {
 
-			var card = {Value: values[j], Suit: suits[i]}; //Pairing each value of suit to each possible value of cards
-			deck.push(card); //adding each created card to our deck 
+			//Pairing each value of suit to each possible value of cards
+			let card = {Value: values[j], Suit: suits[i]}; 
+			//adding each created card to our deck 
+			deck.push(card); 
 
 		}
 	}
 
 	//Adding jokers to the deck
-	var joker1 = {};         
+	let joker1 = {};         
 	joker1.Value = "Joker";
 	joker1.Suit = "Joker";
-	var joker2 = {};
+	let joker2 = {};
 	joker2.Value = "Joker";
 	joker2.Suit = "Joker";
 	deck.push(joker1);
 	deck.push(joker2);
 	
-	return deck; //Returning the deck
+	//Returning the deck
+	return deck; 
 }
 
-function renderDeck(deck) {  //Rendering the deck of cards on the screen
+//Rendering the deck of cards on the screen
+function renderDeck(deck) {  
 
-	for(var i = 0; i < deck.length; i++) {           //Iterating over all cards in the deck
-		var card = document.createElement("div");	 //Creating a div for every card to attach it with an element with id "root" 
-		var value = document.createElement("div");	 //A div to hold the value of a card
-		var suit = document.createElement("div");	 //A div to hold the suit of a card
-		card.className = "card";					 //Adding classes for help in css
+	//Iterating over all cards in the deck
+	//Creating a div for every card to attach it with an element with id "root"
+	//A div to hold the value of a card
+	//A div to hold the suit of a card
+	//Adding classes for help in css
+	for(let i = 0; i < deck.length; i++) {           
+		let card = document.createElement("div");	  
+		let value = document.createElement("div");	 
+		let suit = document.createElement("div");	 
+		card.className = "card";					 
 		value.className = "value";
 		suit.className = "suit " + deck[i].Suit;
 
-		value.innerHTML = deck[i].Value;   //Setting the value of the card
-		card.appendChild(value);		   //Adding value to the card
-		card.appendChild(suit);			   //Adding suit to the card
+		//Setting the value of the card
+		//Adding value to the card
+		//Adding suit to the card
+		value.innerHTML = deck[i].Value;   
+		card.appendChild(value);		   
+		card.appendChild(suit);			   
 
-		document.getElementById("root").appendChild(card); //Appending all cards of the deck as a child to the element with id "root" one at a time
+		//Appending all cards of the deck as a child to the element with id "root" one at a time
+		document.getElementById("root").appendChild(card); 
 	}
 }
 
-window.addEventListener('DOMContentLoaded',function(){  //Executing after the page is loaded
+//Executing after the page is loaded
+window.addEventListener("DOMContentLoaded",() => {  
 
-deck1 = createDeck();  //Creating a new deck of cards
-renderDeck(deck1);	   //Rendering the newly created deck of cards
+//Creating a new deck of cards
+deck1 = createDeck();
+//Rendering the newly created deck of cards
+renderDeck(deck1);	   
 
 });

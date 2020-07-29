@@ -47,11 +47,9 @@ function renderDeck(deck) {  //Rendering the deck of cards on the screen
 	}
 }
 
-function load() {
+window.addEventListener('DOMContentLoaded',function(){  //Executing after the page is loaded
 
 deck1 = createDeck();  //Creating a new deck of cards
 renderDeck(deck1);	   //Rendering the newly created deck of cards
 
-}
-
-window.onload = load; //calling function load immediately after the page is loaded
+});

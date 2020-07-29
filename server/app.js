@@ -12,6 +12,7 @@ const publicDirectoryPath = path.join(__dirname, '../client')
 app.set('view engine', 'ejs')
 app.set('views', publicDirectoryPath)
 
+app.use(express.static(publicDirectoryPath, { index: '_'}))
 app.use(indexRouter)
 
 module.exports = app

@@ -70,3 +70,5 @@ package-lock.json
 .vscode/*
 
 # Add any unwanted files here
+config
+dev.env

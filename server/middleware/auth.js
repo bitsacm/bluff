@@ -22,13 +22,13 @@ const generateAccessToken = async function(req, res, next) {  // Function to gen
         req.id_token = tokens.id_token // setting an id_token property on req object
         next()
       }catch(e) {
-        res.send({"error" : e})
+        res.send({"error" : e}).status(400)
       }
     }else{
-        res.send({"error" : "invalid request"})
+        res.send({"error" : "invalid request"}).status(400)
     }
   }catch(e){
-    res.send({"error" : e})
+    res.send({"error" : e}).status(400)
   }
 }
 
@@ -36,18 +36,18 @@ const verifyToken = async (req, res, next) => { // Function to verify jwt token 
   const token = req.cookies.jwtToken || '' 
   try {
     if(!token) {
-      res.send({"error" : "You need to login first"})
+      res.send({"error" : "You need to login first"}).status(401)
     }
     if(token){
       const decrypt = await jwt.verify(token, process.env.JWT_SECRET_KEY) // Decrypting jwt Token
       if(decrypt.email !== req.cookies.email){  // checks if email (on cookie) and email embedded on token by generateAuthToken fumction (defined in ../models/user.js) hasn't been tampered 
-        res.send({"error" : "invalid request"})
+        res.send({"error" : "invalid request"}).status(401)
       }
       next()
     }
     
   } catch(e) {
-    res.send({"error" : e}) // In case someone has changed jwt Token or token has expired
+    res.send({"error" : e}).status(401) // In case someone has changed jwt Token or token has expired
   }
 }
 

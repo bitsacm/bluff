@@ -19,7 +19,7 @@ const client = new OAuth2Client(CLIENT_ID)
 
 
 router.get('', (req, res) => {  
-  res.send('<a href="/login">Google Login</a>')
+  res.render('index')
 })
 
 
@@ -33,7 +33,7 @@ router.get('/login', (req, res) => {
   })
     res.redirect(url)
   }else {
-    res.send("You are already logged in")
+    res.send({message :"You are already logged in"})
   }
 })
 
@@ -63,13 +63,13 @@ router.get('/redirect', middleware.generateAccessToken, async (req, res) => {  /
       })
       await user.save()
       await user.generateAuthToken(res) // Defined in (../models/user.js) => Cookies are set using this along with that jwt Token is also generated
-      res.redirect('/profile')
+      res.send({message:"User Created"}).status(201)
     }else {
       await user.generateAuthToken(res)
-      res.redirect('/profile')
+      res.send({ message : 'User Already Exist'})
     }          
   }catch(e) {
-    res.send(e)
+    res.send({error : e}).status(400)
   }
 })
 
@@ -89,7 +89,7 @@ router.get('/logout', middleware.verifyToken, async (req, res) => {
     await user.save()
     res.redirect('/')
   }catch(e){
-    res.send(e)
+    res.send({error : e}).status(400)
   }
 })
 
@@ -104,7 +104,7 @@ router.get('/logout/all', middleware.verifyToken, async( req, res) => {
     await user.save()
     res.redirect('/')
   }catch(e){
-    res.send(e)
+    res.send({error : e}).status(400)
   }
 })
 

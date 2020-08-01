@@ -22,11 +22,11 @@ class Deck {
   }
 
   formDeck (suits, values) {
-    for (let i = 0; i < suits.length; i++) {
-      for (let j = 0; j < values.length; j++) {
-        this.deck.push(new Card(suits[i], values[j]))    // New Card instances created and pushed to Deck by looping over suits and values
-      }
-    }
+    suits.forEach((suit) => {
+      values.forEach((value) => {
+        this.deck.push(new Card(suit, value))
+      })
+    })
     this.deck.push(new Card('Joker', 'Joker')) // Two Joker Cards pushed to Deck
     this.deck.push(new Card('Joker', 'Joker'))
     return this.deck
@@ -38,27 +38,28 @@ class Deck {
    * all divs are assigned their class names for styling reference  
    */
   renderDeck () {
-    for (let i = 0; i < this.deck.length; i++) {
+    this.deck.forEach((card) => {
       const newCard = document.createElement('div')
       const cardValue = document.createElement('div')
       const cardSuit = document.createElement('div')
-      if (this.deck[i].value !== 'Joker') {
-        cardSuit.innerHTML = '&' + this.deck[i].suit + ';'  // Making use of HTML codes for symbols eg. hearts= &hearts;
-        cardValue.innerHTML = this.deck[i].value
-        cardSuit.className = this.deck[i].suit
+      if (card.value !== 'Joker') {
+        cardSuit.innerHTML = '&' + card.suit + ';'  // Making use of HTML codes for symbols eg. hearts= &hearts;
+        cardValue.innerHTML = card.value
+        cardSuit.className = card.suit
       } else {
         cardSuit.innerHTML = '&#9884;'                      // Weird Lily-like suit-symbol for Joker
-        cardValue.innerHTML = this.deck[i].value
-        cardSuit.className = this.deck[i].suit
+        cardValue.innerHTML = card.value
+        cardSuit.className = card.suit
       }
       newCard.className = 'Card'
       cardValue.className = 'cardRank'
       newCard.appendChild(cardValue)
       newCard.appendChild(cardSuit)
       document.getElementById("root").appendChild(newCard)
-    }
+    })
   }
-};
+}
+
 
 
 /* This Function will execute when Window Loads 

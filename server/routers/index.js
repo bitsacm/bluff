@@ -63,7 +63,7 @@ router.get('/redirect', generateAccessToken, async (req, res) => {  // Middlewar
         email,
         fullName : name.split(' ')[0],
         lastName : name.split(' ').reverse()[0],
-        userName : email.split('@')[0],
+        username : email.split('@')[0],
         avatar : picture,
       })
       await user.save()

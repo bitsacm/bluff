@@ -21,15 +21,19 @@
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "express-jwt": "^5.3.1",
+    "google-auth-library": "^6.0.6",
+    "googleapis": "^58.0.0",
     "jsonwebtoken": "^8.5.1",
-    "query-string": "^6.12.1",
-    "socket.io": "^2.3.0",
     "mongodb": "^3.5.4",
-    "mongoose": "^5.9.4"
+    "mongoose": "^5.9.4",
+    "query-string": "^6.12.1",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "env-cmd": "^8.0.2",

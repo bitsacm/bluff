@@ -34,7 +34,7 @@ router.get('/login', async (req, res) => {
     res.redirect(url)
   }else {
     try{
-      const decrypt = await jwt.verify(token, process.env.JWT_SECRET_KEY)
+      const decrypt = await jwt.verify(req.cookies.jwtToken, process.env.JWT_SECRET_KEY)
       res.send({ message :"You are already logged in" })
     }catch(e){
        res.status(401).send({ error : "Try Again"}) 

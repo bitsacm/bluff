@@ -1,1 +1,47 @@
 /* init */
+#root
+{
+  margin: 10px;
+  padding: 10px 40px;
+}
+
+.Card{
+  width: 120px;
+  box-sizing: border-box;
+  height: 170px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 2px 0px 10px 3px grey;
+  display: inline-block;
+  border-radius: 8px;
+  margin-left: -40px;      /* Card overlaping effect */
+  position: relative;
+  margin-bottom:5px;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+.cardRank{
+  font-family: 'Oswald', cursive;
+  padding: 2px;
+  margin: 1px 1px 1px 1px;
+  text-align: left;
+  font-size: 25px;
+  color: black;
+}
+
+.Joker, .hearts, .diams, .clubs, .spades {
+  padding: 2px;
+  margin: 1px 1px 1px 1px;
+  text-align: center;
+  font-size: 80px;
+}
+
+.hearts, .diams{
+  color: red;
+}
+
+.clubs, .spades, .Joker{
+  color: black;
+}
+

@@ -7,7 +7,7 @@ const passport = require("passport");
 
 //index route
 router.get('', (req, res) => {
-  res.redirect('/result')
+  res.render('index')
 })
 
 //google auth entry route

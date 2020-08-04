@@ -15,9 +15,9 @@
 
 ### backend working
 
-- starting route is at '' which redirects it to result page which will check for authentication and if authenticated would render index.ejs else would redirect to '/login' route
+- starting route is at '' which redirects it to result page which will check for authentication and if not authenticated would redirect to '/login' route else will render index.ejs
 
-- at login route would render login.ejs containg google sign in button on clicking this button a get request would be to '/auth/google' which would ask user to sign in.
+- at login route would google sign in box will open for sign in
 
 - after sucessfull sign in, we would save user's google id in database and create a cookie containing that id(hashed and salted). then it would be redirected back to '/auth/google/home'
 

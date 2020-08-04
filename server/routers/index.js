@@ -10,13 +10,8 @@ router.get('', (req, res) => {
   res.redirect('/result')
 })
 
-//login route
-router.get('/login',(req,res)=>{
-  res.render('login')
-})
-
 //google auth entry route
-router.post('/login',(req,res)=>{
+router.get('/login',(req,res)=>{
 res.redirect('/auth/google')
 })
 

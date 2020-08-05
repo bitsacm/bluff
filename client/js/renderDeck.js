@@ -4,9 +4,12 @@
      * newCard is a child element of #root
      * all divs are assigned their class names for styling reference
      */
-function renderDeck (deck) {
+function renderDeck (name, deck) {
   const playerCards = document.createElement('div') // Separate parent div to store cards of individual players
   playerCards.className = 'PlayerDiv'
+  const playerName = document.createElement('h1') // Seperate element to display the name of the player
+  playerName.textContent = name
+  playerCards.appendChild(playerName)
   deck.forEach((card) => {
     const newCard = document.createElement('div')
     const cardValue = document.createElement('div')

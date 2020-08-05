@@ -21,6 +21,6 @@ window.addEventListener('DOMContentLoaded', () => {
   game.createPlayers(playerCount, finalDeck) // Creating n players based on user input
   players = game.distributeCards(playerCount, finalDeck) // Distribute the cards to n players created before
   for (let i = 0; i < playerCount; i++) {
-    renderDeck(players[i].playerCards) // Rendering the cards of players on the screen
+    renderDeck(players[i].playerName, players[i].playerCards) // Rendering the cards of players on the screen
   }
 })

@@ -29,15 +29,15 @@ Game Rules - [Bluff Rules](https://en.wikipedia.org/wiki/Cheat_(game)) We will f
 
 ### Resources
 - Frontend 
-  - https://github.com/bitsacm/Slack-Stock-DAG/blob/master/frontend.md
-  - https://www.w3schools.com/
+  - [Slack Stock DAG - Frontend](https://github.com/bitsacm/Slack-Stock-DAG/blob/master/frontend.md)
+  - [w3schools](https://www.w3schools.com/)
 - Backend 
-  - https://github.com/bitsacm/Slack-Stock-DAG/blob/master/backend.md
+  - [Slack Stock DAG - Backend](https://github.com/bitsacm/Slack-Stock-DAG/blob/master/backend.md)
   - Use the Andrew Mead NodeJS course (available in our google drive link) as refrence for this project.
 - Github 
   - Contibution.md in this repository.
-  - https://github.com/bitsacm/Slack-Stock-DAG/blob/master/open_source.md
-  - Corey Schafer's playlist: https://www.youtube.com/playlist?list=PL-osiE80TeTuRUfjRe54Eea17-YfnOOAx
+  - [Slack Stock DAG - Git](https://github.com/bitsacm/Slack-Stock-DAG/blob/master/open_source.md)
+  - [Corey Schafer's playlist](https://www.youtube.com/playlist?list=PL-osiE80TeTuRUfjRe54Eea17-YfnOOAx)
   
 ### Frontend
 - #### IMPORTANT - 

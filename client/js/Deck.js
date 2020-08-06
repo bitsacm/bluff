@@ -1,11 +1,5 @@
 /* eslint-disable no-unused-vars */
 /*
- suits, values(ranks) declared
- */
-const suits = ['spades', 'clubs', 'hearts', 'diams'] // Array of Card Suits
-const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] // Array of possible card-ranks ie. values.
-
-/*
  * Card and Deck classes to create Card and Deck objects, Card object is used inside Deck.
  */
 
@@ -18,12 +12,17 @@ class Card {
 
 class Deck {
   constructor () {
+  /*
+  suits, values(ranks) declared
+  */
+    this.suits = ['spades', 'clubs', 'hearts', 'diams'] // Array of Card Suits
+    this.values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] // Array of possible card-ranks ie. values.
     this.deck = []
   }
 
-  formDeck (suits, values) {
-    suits.forEach((suit) => {
-      values.forEach((value) => {
+  formDeck () {
+    this.suits.forEach((suit) => {
+      this.values.forEach((value) => {
         this.deck.push(new Card(suit, value))
       })
     })

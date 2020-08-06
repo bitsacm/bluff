@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
   const newDeck = new Deck() // Create a new Deck instance
   for (let i = 0; i < (playerCount / 4); i++) {
-    newDeck.formDeck(suits, values)
+    newDeck.formDeck()
   }
   const finalDeck = newDeck.shuffleDeck() // Creating a final deck to be used after shuffling
   const game = new Game() // Create a new Game instance

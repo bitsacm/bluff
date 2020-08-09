@@ -4,6 +4,7 @@
  */
 
 class Card {
+
   constructor (cardSuit, cardValue, cardId) {
     this.suit = cardSuit
     this.value = cardValue

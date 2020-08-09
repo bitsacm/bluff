@@ -30,5 +30,9 @@ function renderDeck (name, deck) {
     newCard.appendChild(cardSuit)
     playerCards.appendChild(newCard)
   })
+  const moveButton = document.createElement("button")
+  moveButton.innerHTML = "Finished selecting"
+  moveButton.className = "buttons"
+  playerCards.appendChild(moveButton)
   document.getElementById('root').appendChild(playerCards)
 }

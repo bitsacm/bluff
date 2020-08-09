@@ -4,7 +4,8 @@
 /* This Function will execute when Window Loads
 */
 window.addEventListener('DOMContentLoaded', () => {
- let playerCount = window.prompt('Enter the number of players(Between 2 and 12): ')
+// let playerCount = window.prompt('Enter the number of players(Between 2 and 12): ')
+  playerCount = 6
   while (true) {
     if (playerCount <= 2 || playerCount > 12) {
       playerCount = window.prompt('Number of players should bew between 2 and 12')

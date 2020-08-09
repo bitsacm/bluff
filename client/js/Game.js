@@ -10,7 +10,7 @@ class Game {
   // Creating players based on the user input
   createPlayers (playerCount, deck) {
     for (let i = 0; i < playerCount; i++) {
-      this.players.push(new Player('Player ' + (i + 1)))
+      this.players.push(new Player('Player-' + (i + 1)))
     }
     const parts = [] // Array to store the number of cards each player should get.
     const cardCount = deck.length

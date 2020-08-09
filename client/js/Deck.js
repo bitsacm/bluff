@@ -4,12 +4,13 @@
  */
 
 class Card {
-  constructor (cardSuit, cardValue) {
+  constructor (cardSuit, cardValue, cardId) {
     this.suit = cardSuit
     this.value = cardValue
+    this.id = cardId
   }
 }
-
+i = 1  //Globally declared i for card Ids
 class Deck {
   constructor () {
   /*
@@ -23,11 +24,11 @@ class Deck {
   formDeck () {
     this.suits.forEach((suit) => {
       this.values.forEach((value) => {
-        this.deck.push(new Card(suit, value))
+        this.deck.push(new Card(suit, value, i++))
       })
     })
-    this.deck.push(new Card('Joker', 'Joker')) // Two Joker Cards pushed to Deck
-    this.deck.push(new Card('Joker', 'Joker'))
+    this.deck.push(new Card('Joker', 'Joker', i++)) // Two Joker Cards pushed to Deck
+    this.deck.push(new Card('Joker', 'Joker', i++))
     return this.deck
   }
 

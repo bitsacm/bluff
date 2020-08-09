@@ -23,6 +23,7 @@ function renderDeck (name, deck) {
       cardValue.innerHTML = card.value
       cardSuit.className = card.suit
     }
+    newCard.id = card.id
     newCard.className = 'Card'
     cardValue.className = 'cardRank'
     newCard.appendChild(cardValue)

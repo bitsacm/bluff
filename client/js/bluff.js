@@ -24,5 +24,4 @@ window.addEventListener('DOMContentLoaded', () => {
   for (let i = 0; i < playerCount; i++) {
     renderDeck(players[i].playerName, players[i].playerCards) // Rendering the cards of players on the screen
   }
-  clickableCards()
 })

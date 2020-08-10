@@ -18,7 +18,7 @@
   box-shadow: 2px 0px 10px 3px grey;
   display: inline-block;
   border-radius: 8px;
-  margin-left: -40px;      /* Card overlaping effect */
+  margin-left: -12px;      /* Card overlaping effect */
   position: relative;
   margin-bottom:5px;
 }

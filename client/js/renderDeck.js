@@ -25,6 +25,7 @@ function renderDeck (name, deck) {
     }
     newCard.className = 'Card'
     cardValue.className = 'cardRank'
+    newCard.id = card.id  // Adding an id to each div representing the card
     newCard.appendChild(cardValue)
     newCard.appendChild(cardSuit)
     playerCards.appendChild(newCard)

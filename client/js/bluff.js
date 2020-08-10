@@ -23,4 +23,35 @@ window.addEventListener('DOMContentLoaded', () => {
   for (let i = 0; i < playerCount; i++) {
     renderDeck(players[i].playerName, players[i].playerCards) // Rendering the cards of players on the screen
   }
+  // Adding a onclick function to all the elements having class Card
+  // which adds the class selected to each card when clicked and
+  // removes it on clicking again
+  const Cards = document.querySelectorAll('.Card')
+  for (let i = 0; i < Cards.length; i++) {
+    Cards[i].addEventListener('click', () => {
+      if (Cards[i].classList.contains('selected')) {
+        Cards[i].classList.remove('selected')
+      } else {
+        Cards[i].classList.add('selected')
+        console.log(Cards[i])
+      }
+    })
+  }
+  // Adding a button at the bottom of the page to let the player transfer cards to the central stack
+  var button = document.createElement('button')
+  button.textContent = 'Transfer'
+  button.class = 'button'
+  document.getElementById('root').appendChild(button)
+  // Adding an element centralStack to the page to show the visual representation of the centralStack
+  var centralStack = document.createElement('div')
+  centralStack.id = 'centralStack'
+  document.getElementById('root').appendChild(centralStack)
+  // This variable will actually store the values of centralStack,
+  // above one was only a visual representation which is no where related to actual cards
+  // just the number of cards is same in both
+  const centralstack = []
+  // Adding onClick event to the transfer button which calls the moveCard function
+  button.addEventListener('click', () => {
+    moveCard(centralstack, playerCount, game.players)
+  })
 })

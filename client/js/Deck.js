@@ -2,11 +2,12 @@
 /*
  * Card and Deck classes to create Card and Deck objects, Card object is used inside Deck.
  */
-
+let cardId = 1
 class Card {
   constructor (cardSuit, cardValue) {
     this.suit = cardSuit
     this.value = cardValue
+    this.id = cardId
   }
 }
 
@@ -23,11 +24,12 @@ class Deck {
   formDeck () {
     this.suits.forEach((suit) => {
       this.values.forEach((value) => {
-        this.deck.push(new Card(suit, value))
+        this.deck.push(new Card(suit, value, cardId))
+        cardId += 1 // Adding 1 to cardId to assign unique ID to each card
       })
     })
-    this.deck.push(new Card('Joker', 'Joker')) // Two Joker Cards pushed to Deck
-    this.deck.push(new Card('Joker', 'Joker'))
+    this.deck.push(new Card('Joker', 'Joker', cardId++)) // Two Joker Cards pushed to Deck
+    this.deck.push(new Card('Joker', 'Joker', cardId++))
     return this.deck
   }
 

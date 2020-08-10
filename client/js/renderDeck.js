@@ -23,11 +23,18 @@ function renderDeck (name, deck) {
       cardValue.innerHTML = card.value
       cardSuit.className = card.suit
     }
+    newCard.id = card.id
     newCard.className = 'Card'
     cardValue.className = 'cardRank'
     newCard.appendChild(cardValue)
     newCard.appendChild(cardSuit)
+    newCard.addEventListener("click", handleCardClick (), false)
     playerCards.appendChild(newCard)
   })
+  const moveButton = document.createElement("button")
+  moveButton.innerHTML = "Finished selecting"
+  moveButton.className = "buttons"
+  moveButton.addEventListener("click", moveCards (), false) 
+  playerCards.appendChild(moveButton)
   document.getElementById('root').appendChild(playerCards)
 }

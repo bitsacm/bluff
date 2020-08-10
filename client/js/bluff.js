@@ -12,6 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
       break
     }
   }
+  centralStack = []  //Central stack to store cards that are clicked upon and moved by players
   const newDeck = new Deck() // Create a new Deck instance
   for (let i = 0; i < (playerCount / 4); i++) {
     newDeck.formDeck()

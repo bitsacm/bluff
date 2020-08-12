@@ -15,7 +15,7 @@
 
 ### backend working
 
-- starting route is at '' which redirects it to result page which will check for authentication and if not authenticated would redirect to '/login' route else will render index.ejs
+- starting route is at '' which redirects it to index page which will check for authentication and if not authenticated would redirect to '/login' route else will render index.ejs
 
 - at login route would google sign in box will open for sign in
 
@@ -24,3 +24,9 @@
 - here we authenticate and will set that cookie to req.user object so that we could id for further use with user.then we would be redirected to '/result' route.
 
 - at result route,we would check is user logged in if he is logged in we would render 'index.ejs' else we would redirect it to 'login' route
+
+- at '/rooms' route , creates a room with taking roomname and username as prompt 
+
+- handles games started event, new player joining ,disconnection, cards hand to deck and usernames list
+
+- client side code for socket is in test.ejs file

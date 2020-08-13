@@ -5,7 +5,7 @@
    <title>Hello world</title>
 </head>
 <script src="/socket.io/socket.io.js"></script>
-
+<body></body>
 <script>
    //prompts for roomname and username
    var roomname = '';
@@ -59,10 +59,17 @@
 
    // game start event emitter
    socket.emit('gameStart', { roomname: roomname })
-
+   
+   // socket.emit('cardHandShuffle',{roomname:roomname,init:init,final:final})
+   
    // card to hand deck event emitter
    socket.emit('cardHandToDeck', { cards: cards, roomname: roomname })
 
+   // shuffle event listner
+   socket.on('shuffle',(data)=>{
+   console.log(data.init)
+   console.log(data.final)
+   })
    // provides usernames list when pressed start game button
    socket.on('usersList', (data) => {
       data.forEach(name => {
@@ -88,7 +95,4 @@
    })
 
 </script>
-
-<body></body>
-
 </html>

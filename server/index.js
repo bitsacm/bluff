@@ -70,9 +70,14 @@ io.on('connection', (socket) => {
     }
 
   })
+  
+  // cardHandShuffle
+  socket.on('cardHandShuffle',(data)=>{
+    io.in(data.roomname).emit('shuffle',{init:data.init,final:data.final})
+  })
   // cardHandToDeck event listner
-  socket.on('cardHandToDeck', (ids) => {
-    io.in(roomname).emit('cardsInDeck', ids);
+  socket.on('cardHandToDeck', (data) => {
+    io.in(data.roomname).emit('cardsInDeck', data.ids);
   })
   // endGame event listner
   socket.on('endGame',(data)=>{

@@ -3,10 +3,17 @@
 // Will take care of the game attributes like creating players, distributing cards and so on.
 
 class Game {
-  constructor () {
+  constructor (start) {
     this.players = []
+    this._turn = start // Adding a turn to track whose turn it is
+    this.record = [] // Adding a record to store whether the last player bluffed or not
   }
-
+  get turn() {
+    return this._turn
+  }
+  set turn(x) {
+    this._turn = x
+  }
   // Creating players based on the user input
   createPlayers (playerCount, deck) {
     for (let i = 0; i < playerCount; i++) {

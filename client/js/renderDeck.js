@@ -4,7 +4,7 @@
      * newCard is a child element of #root
      * all divs are assigned their class names for styling reference
      */
-function renderDeck (name, deck) {
+function renderDeck (name, deck, game, playerCount) {
   const playerCards = document.createElement('div') // Separate parent div to store cards of individual players
   playerCards.className = 'PlayerDiv'
   const playerName = document.createElement('h1') // Seperate element to display the name of the player
@@ -34,7 +34,8 @@ function renderDeck (name, deck) {
   const moveButton = document.createElement("button")
   moveButton.innerHTML = "Finished selecting"
   moveButton.className = "buttons"
-  moveButton.addEventListener("click", moveCards (), false) 
+  moveButton.disabled = true // Deactivating all buttons
+  moveButton.addEventListener("click", moveCards (game, playerCount), false)
   playerCards.appendChild(moveButton)
   document.getElementById('root').appendChild(playerCards)
 }

@@ -1,15 +1,13 @@
 // router setup
 const express = require('express')
 const router = new express.Router()
-// var bodyParser = require('body-parser')
-// const Room = require('../models/rooms')
-// var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 // authentication setup
 const passport = require('passport')
 
 // index route
 router.get('', (req, res) => {
-  res.render('index')
+  res.redirect('/rooms')
 })
 
 // google auth entry route

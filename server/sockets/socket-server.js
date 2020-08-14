@@ -59,8 +59,8 @@ io.on('connection', (socket) => {
 
   })
   // cardHandToDeck event listner
-  socket.on('cardHandToDeck', (ids) => {
-    io.in(roomname).emit('cardsInDeck', ids);
+  socket.on('cardHandToDeck', (data) => {
+    io.in(data.roomname).emit('cardsInDeck', data.ids);
   })
   // endGame event listner
   socket.on('endGame',(data)=>{

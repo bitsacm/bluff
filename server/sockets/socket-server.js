@@ -5,8 +5,9 @@ io.on('connection', (socket) => {
   console.log('connected')
   // join event listner
   socket.once('join', function (roomname) {
+    let people = io.nsps['/'].adapter.rooms[roomname]
     // checks for maximum users and if game started?
-    if ((io.nsps['/'].adapter.rooms[roomname] && io.nsps['/'].adapter.rooms[roomname].length > 11) || (io.nsps['/'].adapter.rooms[roomname] && io.nsps['/'].adapter.rooms[roomname].allowed != undefined)) {
+    if ((people && people.length > 11) || (people && people.allowed != undefined)) {
     } else {
       socket.join(roomname)      // if passed checks joins room
       socket.broadcast.emit('broadcast', 'new player joined');      // brodcast every other a player has joined
@@ -16,7 +17,7 @@ io.on('connection', (socket) => {
 
   // set username event listner
   socket.on('setUsername', function (data) {
-    var usernameTaken = 0;                                   // var for checking unique username
+    let usernameTaken = 0;                                   // var for checking unique username
     io.in(data.roomname).clients((error, clients) => {      // getting all clients in room
       if (error) throw error;
       // loop for checking username of every other player with given username
@@ -42,16 +43,17 @@ io.on('connection', (socket) => {
 
   // gameStart listner
   socket.on('gameStart', (data) => {
-    var usernames = [];       // array for storing usernames
+    let usernames = [];       // array for storing usernames
+    let people = io.nsps['/'].adapter.rooms[data.roomname]
     io.in(data.roomname).clients((error, clients) => {    // getting all clients in a room
       if (error) throw error;
       clients.forEach(client => {
-        var person = io.sockets.sockets[client]
+        let person = io.sockets.sockets[client]
         usernames.push(person.username)         // adding their username to usernames array
       });
     })
-    if (io.nsps['/'].adapter.rooms[data.roomname].length > 1) {
-      io.nsps['/'].adapter.rooms[data.roomname].allowed = 1;  // setting var for game started true
+    if (people.length > 1) {
+      people.allowed = 1;  // setting var for game started true
       io.in(data.roomname).emit('usersList', usernames)       // emitting usernames list to clients
     } else {
       io.in(data.roomname).emit('lessPlayers', 'need more to start game')

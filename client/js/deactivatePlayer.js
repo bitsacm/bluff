@@ -1,11 +1,11 @@
 // Deactivating the previously active player
 function deactivatePlayer(game) {
-    let playerDiv = document.querySelectorAll('.PlayerDiv')
+    const playerDiv = document.querySelectorAll('.PlayerDiv')
     playerDiv.forEach((player) => {
-        let playerName = player.getElementsByTagName('h1')[0].textContent
+        const playerName = player.getElementsByTagName('h1')[0].textContent
         if (playerName === 'Player ' + (game.turn - 1)) { // Checking if it is the previous player or not
-            let activate = player.querySelectorAll('.Card')
-            let buttonactive = player.querySelector('.buttons')
+            const activate = player.querySelectorAll('.Card')
+            const buttonactive = player.querySelector('.buttons')
             activate.forEach((Card) => {
             Card.setAttribute('style', 'pointer-events:none') // Deactivating all Cards for previous player
             })

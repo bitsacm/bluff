@@ -1,11 +1,11 @@
 // Activating the next player
 function activatePlayer(game){
-    let playerDiv = document.querySelectorAll('.PlayerDiv')
+    const playerDiv = document.querySelectorAll('.PlayerDiv')
     playerDiv.forEach((player) => {
-        let playerName = player.getElementsByTagName('h1')[0].textContent // Variable to store name of the current player
+        const playerName = player.getElementsByTagName('h1')[0].textContent // Variable to store name of the current player
         if (playerName === 'Player ' + game.turn) { // Checking if it is the current player or not  
-            let activate = player.querySelectorAll('.Card')
-            let buttonactive = player.querySelector('.buttons')
+            const activate = player.querySelectorAll('.Card')
+            const buttonactive = player.querySelector('.buttons')
             activate.forEach((Card) => {
             Card.setAttribute('style', 'pointer-events:auto') // Activating all Cards for current player
             })

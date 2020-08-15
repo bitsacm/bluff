@@ -3,8 +3,8 @@
 
 class Player {
   constructor (name) {
-    this.playerName = name
-    this.playerCards = []
+    this.name = name
+    this.cards = []
     this.numberOfCards = 0
   }
 }

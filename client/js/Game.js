@@ -13,6 +13,7 @@ class Game {
   }
 
   start() {
+    // input the number of players
     let playerCount = window.prompt('Enter the number of players(Between 2 and 12): ')
 
     while (true) {
@@ -23,6 +24,7 @@ class Game {
       }
     }
 
+    // create a deck for every 4 players
     for (let i = 0; i < (playerCount / 4); i++) {
       this.addDeck()
     }
@@ -36,10 +38,8 @@ class Game {
     // Distribute the cards to n players created before
     this.distributeCards() 
 
-    for (let i = 0; i < playerCount; i++) {
-      // Rendering the cards of players on the screen
-      renderDeck(this.players[i].playerName, this.players[i].playerCards)
-    }
+    // render cards for every player
+    this.players.forEach((player) => renderDeck(player.name, player.cards, this))
   }
 
   addDeck () {
@@ -87,7 +87,7 @@ class Game {
     let temp = this.deck
     for (let j = 0; j < playerCount; j++) {
       // Giving the slice of cards each player will get
-      this.players[j].playerCards = temp.slice(0, this.players[j].numberOfCards)
+      this.players[j].cards = temp.slice(0, this.players[j].numberOfCards)
       // Reamaining cards for the next iteration
       temp = temp.splice(this.players[j].numberOfCards)
     }

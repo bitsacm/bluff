@@ -6,5 +6,6 @@ class Player {
     this.name = name
     this.cards = []
     this.numberOfCards = 0
+    this.selectedCards = []
   }
 }

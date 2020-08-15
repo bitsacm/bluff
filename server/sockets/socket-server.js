@@ -22,7 +22,7 @@ io.on('connection', (socket) => {
       if (error) throw error;
       // loop for checking username of every other player with given username
       for (var i = 0; i < clients.length; i++) {
-        var user = io.sockets.sockets[clients[i]];    // saving socket into user 
+        const user = io.sockets.sockets[clients[i]];    // saving socket into user 
 
         if (user.username == data.username) {         // if equal therfore username taken
           usernameTaken = 1;                          // setting var to 1

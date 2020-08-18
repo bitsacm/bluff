@@ -34,6 +34,6 @@ window.addEventListener('DOMContentLoaded', () => {
   })
   activatePlayer(game) // Activating one player to start the game
   // Alerting which player will start the game
-  let message = 'Player ' + start + ' will start.'
+  let message = game.players[game.turn - 1].playerName + ' will start.'
   window.alert(message) 
 })

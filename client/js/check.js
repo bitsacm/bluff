@@ -12,7 +12,7 @@ function check(game, currentRank, centralStack, initialNoOfCards, finalNoOfCards
         }
     }
     const noOfCardsMoved = finalNoOfCards - initialNoOfCards // Calculating the number of cards added in this chance
-    const msg = 'Player ' + game.turn + ' added ' + noOfCardsMoved + ' card(s) to the stack.'
+    const msg = game.players[game.turn - 1].playerName + ' added ' + noOfCardsMoved + ' card(s) to the stack.'
     window.alert(msg)
     // If value of flag is equal to the number of cards added in this turn
     // Set record to not bluffed 

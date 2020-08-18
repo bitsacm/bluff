@@ -7,7 +7,7 @@ class Game {
     this.players = []
     this._turn = start // Adding a turn to track whose turn it is
     this.record = [] // Adding a record to store whether the last player bluffed or not
-    this.data = '' // Data of which rank is currently being played  
+    this.currentRank = '' // Data of which rank is currently being played  
   }
   get turn() {
     return this._turn

@@ -18,17 +18,14 @@ function moveCards (game, playerCount) {
     arrayId = []
     console.log(centralStack)      // To see the current state of central stack
     const finalNoOfCards = centralStack.length // Calculating no. of cards in the Central Stack after adding new card(s) 
-    let compare = parseInt(playerCount) + 1
-    if (game.turn ===  compare) { // Checking if it was last player's turn or not
+    if (game.turn ===  parseInt(playerCount)) { // Checking if it was last player's turn or not
       deactivatePlayer(game) // Deactivating the current player
-      game.turn = 1 // If it was last player change turn to 1
-      activatePlayer(game) // Activating the next player
+      bluffData(game, centralStack, initialNoOfCards, finalNoOfCards)
     } 
     else {
       deactivatePlayer(game) // Deactivating the current player
-      activatePlayer(game) // Activating the next player
+      bluffData(game, centralStack, initialNoOfCards, finalNoOfCards)
     }
-    bluffData(game, centralStack, initialNoOfCards, finalNoOfCards)
   }
 }
 

@@ -1,5 +1,5 @@
 // Function which executes when the submit button is clicked 
-function submitCard(game,centralStack, initialNoOfCards, finalNoOfCards) {
+function submitCard(game, centralStack, initialNoOfCards, finalNoOfCards) {
     const modal = document.getElementById('cardModal')
     modal.style.display = 'none' // Removing the modal from the screen
     const selectedCard = document.getElementById('selectCard') // Storing all the options in select menu

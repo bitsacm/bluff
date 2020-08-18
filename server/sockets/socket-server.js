@@ -1,108 +1,115 @@
-const {io} = require('./../index')
+const { io } = require('./../index')
 
 // on connecting with  client socket
 io.on('connection', (socket) => {
   console.log('connected')
   // join event listner
   socket.once('join', function (roomname) {
-    let people = io.nsps['/'].adapter.rooms[roomname]
+    const people = io.nsps['/'].adapter.rooms[roomname]
     // checks for maximum users and if game started?
-    if ((people && people.length > 11) || (people && people.allowed != undefined)) {
+
+    if ((people && people.length > 11) || (people && people.allowed !== undefined)) {
     } else {
-      socket.join(roomname)      // if passed checks joins room
-      socket.broadcast.emit('broadcast', 'new player joined');      // brodcast every other a player has joined
-      socket.emit('connectToRoom', "You are in room " + roomname)   // emit user the roomname
+      socket.join(roomname) // if passed checks joins room
+      socket.broadcast.emit('broadcast', 'new player joined') // brodcast every other a player has joined
+      socket.emit('connectToRoom', 'You are in room ' + roomname) // emit user the roomname
     }
   })
 
   // set username event listner
   socket.on('setUsername', function (data) {
-    let usernameTaken = 0;                                   // var for checking unique username
-    io.in(data.roomname).clients((error, clients) => {      // getting all clients in room
-      if (error) throw error;
+    let usernameTaken = 0 // var for checking unique username
+    io.in(data.roomname).clients((error, clients) => { // getting all clients in room
+      if (error) throw error
       // loop for checking username of every other player with given username
       for (var i = 0; i < clients.length; i++) {
-        const user = io.sockets.sockets[clients[i]];    // saving socket into user 
+        var user = io.sockets.sockets[clients[i]] // saving socket into user
 
-        if (user.username == data.username) {         // if equal therfore username taken
-          usernameTaken = 1;                          // setting var to 1
-          break;                                      // break from loop
+        if (user.username === data.username) { // if equal therfore username taken
+          usernameTaken = 1 // setting var to 1
+          break // break from loop
         }
       }
 
       if (!usernameTaken) {
-        socket.username = data.username           // setting username in socket of that client
-        socket.emit('userSet', { username: data.username })   // emiting username to client side
+        socket.username = data.username // setting username in socket of that client
+        socket.emit('userSet', { username: data.username }) // emiting username to client side
       } else {
         // emitting dupilicate username to client side
-        socket.emit('userExists', data.username + ' username is taken! Try some other username.');
-        socket.emit('newPrompt');   //emitting new Prompt for new username
+        socket.emit('userExists', data.username + ' username is taken! Try some other username.')
+        socket.emit('newPrompt') // emitting new Prompt for new username
       }
     })
-  });
+  })
 
   // gameStart listner
   socket.on('gameStart', (data) => {
-    let usernames = [];       // array for storing usernames
-    let people = io.nsps['/'].adapter.rooms[data.roomname]
-    io.in(data.roomname).clients((error, clients) => {    // getting all clients in a room
-      if (error) throw error;
+    const usernames = [] // array for storing usernames
+    const people = io.nsps['/'].adapter.rooms[data.roomname]
+    io.in(data.roomname).clients((error, clients) => { // getting all clients in a room
+      if (error) throw error
       clients.forEach(client => {
-        let person = io.sockets.sockets[client]
-        usernames.push(person.username)         // adding their username to usernames array
-      });
+        const person = io.sockets.sockets[client]
+        usernames.push(person.username) // adding their username to usernames array
+      })
     })
     if (people.length > 1) {
-      people.allowed = 1;  // setting var for game started true
-      io.in(data.roomname).emit('usersList', usernames)       // emitting usernames list to clients
-      let players = people.length                     //no of players
-      //shuffled cards array
-      for (var a=[],i=0;i<54;++i) a[i]=i;
-  
-      function shuffle(array) {
-        var tmp, current, top = array.length;
-        if(top) while(--top) {
-          current = Math.floor(Math.random() * (top + 1));
-          tmp = array[current];
-          array[current] = array[top];
-          array[top] = tmp;
+      people.allowed = 1 // setting var for game started true
+      io.in(data.roomname).emit('usersList', usernames) // emitting usernames list to clients
+      const players = people.length // no of players
+      // shuffled cards array
+      var cards = 54
+      if (players > 4 && players < 10) {
+        cards = 108
+      } else if (players > 9) {
+        cards = 162
+      }
+      for (var a = [], i = 0; i < cards; ++i) a[i] = i
+
+      a = shuffle(a) // shuffles cards array a
+      const playerscards = new Array(players) // creating arrays for storing playerscards
+      for (let i = 0; i < players; i++) {
+        playerscards[i] = []
+      }
+      let x = cards
+      let j = 0
+      while (x) {
+        for (let i = 0; i < players; i++) {
+          if (x) {
+            playerscards[i][j] = a[--x]
+          } else {
+            break
+          }
         }
-        return array;
+        j++
       }
-  
-      a = shuffle(a);     //shuffles cards array a
-      var playerscards = new Array(players);      //creating arrays for storing playerscards
-      for(var i=0;i<players;i++){
-        playerscards[i]= new Array()
-      }
-      var x=54;
-      var j=0;
-      while(x){
-      for(var i=0;i<players;i++){
-        if(x){
-        playerscards[i][j]= a[--x]
-        }else{
-          break;
-        }
-      }
-      j++;
-    }
-    io.in(data.roomname).emit('playerCards',playerscards) //emiting playercards array to everyone
+      io.in(data.roomname).emit('playerCards', playerscards) // emiting playercards array to everyone
     } else {
-      io.in(data.roomname).emit('lessPlayers', 'need more to start game') 
+      io.in(data.roomname).emit('lessPlayers', 'need more to start game')
     }
   })
   // cardHandToDeck event listner
   socket.on('cardHandToDeck', (data) => {
-    io.in(data.roomname).emit('cardsInDeck', data.ids);
+    io.in(data.roomname).emit('cardsInDeck', data.ids)
   })
   // endGame event listner
-  socket.on('endGame',(data)=>{
-    io.in(data.roomname).emit('redirect','/')
+  socket.on('endGame', (data) => {
+    io.in(data.roomname).emit('redirect', '/')
   })
   // dissconection event
   socket.once('disconnect', function () {
     console.log('disconnected')
   })
 })
-
+function shuffle (array) {
+  let tmp; let current; let top = array.length
+  if (top) {
+    while (--top) {
+      current = Math.floor(Math.random() * (top + 1))
+      tmp = array[current]
+      array[current] = array[top]
+      array[top] = tmp
+    }
+  }
+  return array
+}

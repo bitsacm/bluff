@@ -22,7 +22,7 @@ io.on('connection', (socket) => {
       if (error) throw error;
       // loop for checking username of every other player with given username
       for (var i = 0; i < clients.length; i++) {
-        const user = io.sockets.sockets[clients[i]];    // saving socket into user 
+        var user = io.sockets.sockets[clients[i]];    // saving socket into user 
 
         if (user.username == data.username) {         // if equal therfore username taken
           usernameTaken = 1;                          // setting var to 1
@@ -55,10 +55,42 @@ io.on('connection', (socket) => {
     if (people.length > 1) {
       people.allowed = 1;  // setting var for game started true
       io.in(data.roomname).emit('usersList', usernames)       // emitting usernames list to clients
-    } else {
-      io.in(data.roomname).emit('lessPlayers', 'need more to start game')
+      let players = people.length                     //no of players
+      //shuffled cards array
+      for (var a=[],i=0;i<54;++i) a[i]=i;
+  
+      function shuffle(array) {
+        var tmp, current, top = array.length;
+        if(top) while(--top) {
+          current = Math.floor(Math.random() * (top + 1));
+          tmp = array[current];
+          array[current] = array[top];
+          array[top] = tmp;
+        }
+        return array;
+      }
+  
+      a = shuffle(a);     //shuffles cards array a
+      var playerscards = new Array(players);      //creating arrays for storing playerscards
+      for(var i=0;i<players;i++){
+        playerscards[i]= new Array()
+      }
+      var x=54;
+      var j=0;
+      while(x){
+      for(var i=0;i<players;i++){
+        if(x){
+        playerscards[i][j]= a[--x]
+        }else{
+          break;
+        }
+      }
+      j++;
     }
-
+    io.in(data.roomname).emit('playerCards',playerscards) //emiting playercards array to everyone
+    } else {
+      io.in(data.roomname).emit('lessPlayers', 'need more to start game') 
+    }
   })
   // cardHandToDeck event listner
   socket.on('cardHandToDeck', (data) => {

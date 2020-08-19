@@ -38,7 +38,7 @@ class Game {
       }
     }
 
-    this._turn = Math.floor(Math.random() * playerCount) + 1
+    this._turn = Math.floor(Math.random() * playerCount)
 
     // create a deck for every 4 players
     for (let i = 0; i < (playerCount / 4); i++) {
@@ -64,7 +64,7 @@ class Game {
     activatePlayer(this)
 
     // Alerting which player will start the game
-    const message = this.players[this._turn - 1].name + ' will start.'
+    const message = this.players[this._turn].name + ' will start.'
     window.alert(message)
   }
 

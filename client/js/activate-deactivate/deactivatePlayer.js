@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 // Deactivating the previously active player
 function deactivatePlayer (game) {
-  const players = document.getElementById('root').children
-  const currentPlayer = players[game.turn + 1]
+  const players = document.querySelectorAll('.PlayerDiv')
+  const currentPlayer = players[game.turn]
 
   const cards = currentPlayer.querySelectorAll('.Card')
   cards.forEach((card) => {

@@ -21,6 +21,9 @@ function renderButton (game) {
       })
     })
     player.selectedCards = []
+
+    deactivatePlayer(game)
+
     // To see the current state of central stack
     console.log(game.centralStack)
   })

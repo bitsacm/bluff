@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 // Activating the player according to the current turn
 function activatePlayer (game) {
-  const players = document.getElementById('root').children
-  const currentPlayer = players[game.turn + 1]
+  const players = document.querySelectorAll('.PlayerDiv')
+  const currentPlayer = players[game.turn]
 
   const cards = currentPlayer.querySelectorAll('.Card')
   cards.forEach((card) => {

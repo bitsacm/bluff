@@ -6,6 +6,7 @@ function renderButton (game) {
   button.className = 'buttons'
   button.addEventListener('click', () => {
     const player = game.players.find(player => player.name === button.parentNode.id)
+    const initialNoOfCards = game.centralStack.length
     player.selectedCards.forEach((id) => {
       const card = document.getElementById(id)
       card.parentNode.removeChild(card)
@@ -21,8 +22,10 @@ function renderButton (game) {
       })
     })
     player.selectedCards = []
+    const finalNoOfCards = game.centralStack.length
 
     deactivatePlayer(game)
+    bluffData(game, initialNoOfCards, finalNoOfCards)
 
     // To see the current state of central stack
     console.log(game.centralStack)

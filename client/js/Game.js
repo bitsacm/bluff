@@ -6,13 +6,27 @@ class Game {
   constructor () {
     this.suits = ['spades', 'clubs', 'hearts', 'diams'] // Array of Card Suits
     this.values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] // Array of possible card-ranks ie. values.
+
     this.deck = []
     this.players = []
-    this.centralStack = []  //Central stack to store cards that are clicked upon and moved by players
-    this.idNumber = 1 
+    this._turn = 0
+
+    this.centralStack = [] // Central stack to store cards that are clicked upon and moved by players
+    this.record = [] // Adding a record to store whether the last player bluffed or not
+    this.currentRank = '' // Data of which rank is currently being played
+
+    this.idNumber = 1
   }
 
-  start() {
+  get turn () {
+    return this._turn
+  }
+
+  set turn (turn) {
+    this._turn = turn
+  }
+
+  start () {
     // input the number of players
     let playerCount = window.prompt('Enter the number of players(Between 2 and 12): ')
 
@@ -24,6 +38,8 @@ class Game {
       }
     }
 
+    this._turn = Math.floor(Math.random() * playerCount) + 1
+
     // create a deck for every 4 players
     for (let i = 0; i < (playerCount / 4); i++) {
       this.addDeck()
@@ -31,19 +47,29 @@ class Game {
 
     // shuffle
     this.shuffle()
-  
+
     // Creating n players based on user input
     this.createPlayers(playerCount)
-  
+
     // Distribute the cards to n players created before
-    this.distributeCards() 
+    this.distributeCards()
 
     // render cards for every player
     this.players.forEach((player) => renderDeck(player.name, player.cards, this))
+
+    // deactivate all cards and buttons
+    deactivateAllPlayers()
+
+    // activate the player who will start the game
+    activatePlayer(this)
+
+    // Alerting which player will start the game
+    const message = this.players[this._turn - 1].name + ' will start.'
+    window.alert(message)
   }
 
   // add a 54 card deck to the cards beinf used in this game
-  addDeck() {
+  addDeck () {
     // iterate over the suits and the values generating a new card.
     this.suits.forEach((suit) => {
       this.values.forEach((value) => {
@@ -52,7 +78,7 @@ class Game {
     })
 
     // Two Joker Cards pushed to Deck.
-    this.deck.push(new Card('Joker', 'Joker', this.idNumber++)) 
+    this.deck.push(new Card('Joker', 'Joker', this.idNumber++))
     this.deck.push(new Card('Joker', 'Joker', this.idNumber++))
   }
 
@@ -70,7 +96,7 @@ class Game {
   }
 
   // Creating players based on the user input
-  createPlayers(playerCount) {
+  createPlayers (playerCount) {
     // create the players one at time and push them to the game object's players attribute
     for (let i = 0; i < playerCount; i++) {
       this.players.push(new Player('Player ' + (i + 1)))
@@ -80,7 +106,7 @@ class Game {
     const parts = []
 
     const cardCount = this.deck.length
-    
+
     // first, evenly distribute the cards among the players
     for (let i = 0; i < playerCount; i++) {
       parts[i] = Math.floor(cardCount / playerCount)
@@ -98,7 +124,7 @@ class Game {
   }
 
   // Distribute cards to each player
-  distributeCards() {
+  distributeCards () {
     let temp = this.deck
     for (let j = 0; j < this.players.length; j++) {
       // Giving the slice of cards each player will get

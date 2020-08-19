@@ -10,6 +10,11 @@
 <script src="js/renderDeck.js"></script>
 <script src="js/bluff.js"></script>
 <script src="js/cardStack.js"></script>
+<script src="js/activate-deactivate/deactivateAllPlayers.js"></script>
+<script src="js/activate-deactivate/activatePlayer.js"></script>
+<script src="js/render-elements/renderPlayer.js"></script>
+<script src="js/render-elements/renderCard.js"></script>
+<script src="js/render-elements/renderButton.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,8 +23,33 @@
 </head>
 <body>
     <div id = "root">
-      <div id = "CentralStack"> <h1>CentralDeck</h1> </div>
-    </div>  
+      <div id = "CentralStack">
+        <h1>CentralDeck</h1>
+        <h2>Current Rank: </h2>
+        <h2>Current Player: </h2>
+      </div>
+      <div id="cardModal" class="modal">
+        <div class="modal-content">
+          <h2>'Which rank card have you added?(You may BLUFF)'</h2>
+          <select name="selectCard" id="selectCard">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="J">Jack</option>
+            <option value="Q">Queen</option>
+            <option value="K">King</option>
+            <option value="A">Ace</option>
+          </select>
+          <button id="submit">Submit</button>
+        </div>
+      </div>
+    </div>
 </body>
 </div>
 </html>

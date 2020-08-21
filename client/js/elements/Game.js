@@ -164,7 +164,7 @@ class Game {
 
     // Attaching the number of cards each player gets to the player, to keep track of the number of cards the player has
     for (let i = 0; i < playerCount; i++) {
-      this._players[i].numberOfCards = parts[i]
+      this._players[i].cards.length = parts[i]
     }
   }
 
@@ -173,9 +173,9 @@ class Game {
     let temp = this.deck
     for (let j = 0; j < this.players.length; j++) {
       // Giving the slice of cards each player will get
-      this.players[j].cards = temp.slice(0, this.players[j].numberOfCards)
+      this.players[j].cards = temp.slice(0, this.players[j].cards.length)
       // Reamaining cards for the next iteration
-      temp = temp.splice(this.players[j].numberOfCards)
+      temp = temp.splice(this.players[j].cards.length)
     }
   }
 }

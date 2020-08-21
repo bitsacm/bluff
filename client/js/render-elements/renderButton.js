@@ -15,9 +15,8 @@ function renderButton (game) {
           // Adding the clicked Card to Central Stack array
           game.centralStack.push(card)
           player.cards.splice(i, 1)
-          player.numberOfCards = player.cards.length
           // rendering another flipped card to central deck
-          cardStack()
+          renderStackCard()
         }
       })
     })

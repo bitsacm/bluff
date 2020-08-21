@@ -4,18 +4,39 @@
 
 class Game {
   constructor () {
-    this.suits = ['spades', 'clubs', 'hearts', 'diams'] // Array of Card Suits
-    this.values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'] // Array of possible card-ranks ie. values.
+    // Array of Card Suits - should not accessed from outside the class
+    this._suits = ['spades', 'clubs', 'hearts', 'diams']
+    // Array of possible card-ranks ie. values - should not accessed from outside the class
+    this._values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
-    this.deck = []
-    this.players = []
+    // the cards in play for this game
+    this._deck = []
+    // ids of the cards for this game - should not accessed from outside the class
+    this._idNumber = 1
+
+    // the players for this game - should not mutated from outside class
+    this._players = []
+    // index of the player whose turn it currently is
     this._turn = 0
 
-    this.centralStack = [] // Central stack to store cards that are clicked upon and moved by players
-    this.record = [] // Adding a record to store whether the last player bluffed or not
-    this.currentRank = '' // Data of which rank is currently being played
+    // Central stack to store cards that are moved by players
+    this._centralStack = []
+    // Adding a record to store whether the last player bluffed or not
+    this._record = ''
+    // Data of which rank is currently being played
+    this._currentRank = ''
+  }
 
-    this.idNumber = 1
+  get players () {
+    return this._players
+  }
+
+  get deck () {
+    return this._deck
+  }
+
+  set deck (deck) {
+    this._deck = deck
   }
 
   get turn () {
@@ -24,6 +45,30 @@ class Game {
 
   set turn (turn) {
     this._turn = turn
+  }
+
+  get centralStack () {
+    return this._centralStack
+  }
+
+  set centralStack (stack) {
+    this._centralStack = stack
+  }
+
+  get record () {
+    return this._record
+  }
+
+  set record (record) {
+    this._record = record
+  }
+
+  get currentRank () {
+    return this._currentRank
+  }
+
+  set currentRank (rank) {
+    this._currentRank = rank
   }
 
   start () {
@@ -45,7 +90,7 @@ class Game {
       this.addDeck()
     }
 
-    // shuffle
+    // shuffle the cards
     this.shuffle()
 
     // Creating n players based on user input
@@ -71,15 +116,15 @@ class Game {
   // add a 54 card deck to the cards beinf used in this game
   addDeck () {
     // iterate over the suits and the values generating a new card.
-    this.suits.forEach((suit) => {
-      this.values.forEach((value) => {
-        this.deck.push(new Card(suit, value, this.idNumber++))
+    this._suits.forEach((suit) => {
+      this._values.forEach((value) => {
+        this.deck.push(new Card(suit, value, this._idNumber++))
       })
     })
 
     // Two Joker Cards pushed to Deck.
-    this.deck.push(new Card('Joker', 'Joker', this.idNumber++))
-    this.deck.push(new Card('Joker', 'Joker', this.idNumber++))
+    this.deck.push(new Card('Joker', 'Joker', this._idNumber++))
+    this.deck.push(new Card('Joker', 'Joker', this._idNumber++))
   }
 
   shuffle () {
@@ -99,7 +144,7 @@ class Game {
   createPlayers (playerCount) {
     // create the players one at time and push them to the game object's players attribute
     for (let i = 0; i < playerCount; i++) {
-      this.players.push(new Player('Player ' + (i + 1)))
+      this._players.push(new Player('Player ' + (i + 1)))
     }
 
     // Array to store the number of cards each player should get.
@@ -119,7 +164,7 @@ class Game {
 
     // Attaching the number of cards each player gets to the player, to keep track of the number of cards the player has
     for (let i = 0; i < playerCount; i++) {
-      this.players[i].numberOfCards = parts[i]
+      this._players[i].numberOfCards = parts[i]
     }
   }
 

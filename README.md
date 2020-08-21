@@ -70,7 +70,6 @@ Game Rules - [Bluff Rules](https://en.wikipedia.org/wiki/Cheat_(game)) We will f
   
 - #### Step 4 (5 days)
   - Allow users to pass. 
-  - Add a timer after which the turn gets passed.
   - Allow users to check the last turn in order to catch a bluff.
   - Transfer the stack to the suitable user depending on whether the bluff was caught.
   - Trash the stack if everyone has passed once in that round.
@@ -80,9 +79,6 @@ Game Rules - [Bluff Rules](https://en.wikipedia.org/wiki/Cheat_(game)) We will f
   - Backend sends usernames along with player numbers to the frontend. Cards are now shuffled at the backend and sent to the front.
   - Allow PLayer 1 to access a start game button, for others display - "waiting for Player 1 to start".
   - Hide the cards of other users except for the one who matches the username. (Number of cards everyone has in hand must be visible. just flip the cards to the back side).
-  - Let players rearrange the cards they have in hand.
-  - You MUST have a rearrange card function which when called executes the transfer of cards by invoking other relevant functions.
-  - the reshuffling will be passed to the backend.
   - Bring that player to comfortable position on the screen.
   - Redirect to index page at end of game
   

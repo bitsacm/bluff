@@ -21,8 +21,8 @@ class Game {
 
     // Central stack to store cards that are moved by players
     this._centralStack = []
-    // Adding a record to store whether the last player bluffed or not
-    this._record = ''
+    // Adding a record to store whether the players bluffed or not
+    this._record = []
     // Data of which rank is currently being played
     this._currentRank = ''
   }

@@ -13,6 +13,12 @@ function renderDeck (name, deck, game) {
   // append button to the player
   const button = renderButton(game)
   player.appendChild(button)
+  // append passButton to the player
+  const passButton = renderPassButton(game)
+  player.appendChild(passButton)
+  // append showButton to the player
+  const showButton = renderCheckButton(game)
+  player.appendChild(showButton)
   // render the player
   document.getElementById('root').appendChild(player)
 }

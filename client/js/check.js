@@ -3,13 +3,14 @@
 // Function to check whether the player bluffed or not
 function check (game, initialNoOfCards, finalNoOfCards) {
   // assume that the player has not bluffed
-  game.record = 'Not Bluffed'
+  data = 'Not Bluffed'
   // Looping through cards added in this chance and checking for bluff
   for (let i = initialNoOfCards; i < finalNoOfCards; i++) {
     if (game.centralStack[i].value !== game.currentRank && game.centralStack[i].value !== 'Joker') {
-      game.record = 'Bluffed'
+      data = 'Bluffed'
     }
   }
+  game.record.push(data)
 
   // Calculating the number of cards added in this chance
   const noOfCardsMoved = finalNoOfCards - initialNoOfCards

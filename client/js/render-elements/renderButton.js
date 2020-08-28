@@ -23,7 +23,7 @@ function renderButton (game) {
     player.selectedCards = []
     const finalNoOfCards = game.centralStack.length
 
-    deactivatePlayer(game)
+    deactivatePlayer(game.turn)
     bluffData(game, initialNoOfCards, finalNoOfCards)
 
     // To see the current state of central stack

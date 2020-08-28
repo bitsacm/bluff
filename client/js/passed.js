@@ -7,11 +7,11 @@ function passed (game) {
   } else {
     game.turn += 1
   }
-  if (game.passes === game.players.length) {
+  if (game.passes === game.players.length-1) {
     //Restarting the game if all players pass
     window.alert("All players have passed. The next round will start now")
-    game.turn--
     nextRound(game)
+  } else {
+    activatePlayer(game) // Activating the next player
   }
-  activatePlayer(game) // Activating the next player
 }

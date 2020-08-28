@@ -13,4 +13,6 @@ function deactivatePlayer (game) {
   // Disabling the button for current player
   const button = currentPlayer.querySelectorAll('.buttons')[0]
   button.disabled = true
+  const checkButton = currentPlayer.querySelectorAll('.checkButtons')[0]
+  checkButton.disabled = true
 }

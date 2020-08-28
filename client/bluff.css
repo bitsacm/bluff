@@ -57,20 +57,23 @@
   background-image: linear-gradient(45deg, grey, white)
 }
 
-.buttons{
+.buttons, .checkButtons{
+  display: block;
   background: #222;
   height: 40px;
   min-width: 150px;
-  border: solid;
   border-radius: 10px;
+  border: solid white 2px;
   color: #eee;
   font-size: 20px;
   position: relative;
-  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   padding-top: 5px;
+  margin-bottom: 8px;
+  margin-top: 2px;
+  box-shadow: 0px 3px grey;
 }
 
 h1 {
@@ -91,7 +94,7 @@ h1 {
 .modal-content {
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: auto; /* Could be more or less, depending on screen size */
 }
 
 h2 {

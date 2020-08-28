@@ -18,9 +18,14 @@ function bluffData (game, initialNoOfCards, finalNoOfCards) {
 
       // Calling check for the first time
       check(game, initialNoOfCards, finalNoOfCards)
+      game.firstMove = false
     }
   } else {
-    // If not the first turn, check if the player bluffed or not
-    check(game, initialNoOfCards, finalNoOfCards)
+    // If not the first turn, check if the player bluffed or not or passed
+    if(initialNoOfCards !== finalNoOfCards) {
+      check(game, initialNoOfCards, finalNoOfCards)
+    } else {
+      passed(game)
+    }
   }
 }

@@ -14,6 +14,9 @@ function activatePlayer (game) {
   const button = currentPlayer.querySelectorAll('.buttons')[0]
   button.disabled = false
 
+  const checkButton = currentPlayer.querySelectorAll('.checkButtons')[0]
+  checkButton.disabled = false
+  
   // change name of player whose turn it currently is
   const currentPlayerName = currentPlayer.getElementsByTagName('h1')[0].textContent
   document.getElementsByTagName('h2')[1].innerHTML = 'Current Player: ' + currentPlayerName

@@ -14,10 +14,16 @@ class Game {
     // ids of the cards for this game - should not accessed from outside the class
     this._idNumber = 1
 
+    // Maintaining if the current move is the first move for the rank
+    this._firstMove = true
     // the players for this game - should not mutated from outside class
     this._players = []
     // index of the player whose turn it currently is
     this._turn = 0
+    // Keeping track if the last player passed
+    this._passes = 0
+    //Keeping track of the last player who played card and didn't pass
+    this._lastPlayer = 0
 
     // Central stack to store cards that are moved by players
     this._centralStack = []
@@ -47,6 +53,14 @@ class Game {
     this._turn = turn
   }
 
+  get lastPlayer () {
+    return this._lastPlayer
+  }
+
+  set lastPlayer (lastPlayer) {
+    this._lastPlayer = lastPlayer
+  }
+
   get centralStack () {
     return this._centralStack
   }
@@ -63,6 +77,21 @@ class Game {
     this._record = record
   }
 
+  get firstMove () {
+    return this._firstMove 
+  }
+
+  set firstMove (bool) {
+    this._firstMove = bool 
+  }
+
+  get passes () {
+    return this._passes
+  }
+
+  set passes (passes) {
+    this._passes = passes
+  }
   get currentRank () {
     return this._currentRank
   }
@@ -73,8 +102,8 @@ class Game {
 
   start () {
     // input the number of players
-    let playerCount = window.prompt('Enter the number of players(Between 2 and 12): ')
-
+   // let playerCount = window.prompt('Enter the number of players(Between 2 and 12): ')
+      let playerCount = 6
     while (true) {
       if (playerCount <= 2 || playerCount > 12) {
         playerCount = window.prompt('Number of players should bew between 2 and 12')

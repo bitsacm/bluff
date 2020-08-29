@@ -10,6 +10,8 @@ function renderDeck (name, deck, game) {
   const player = renderPlayer(name)
   // append cards to the player
   deck.forEach((card) => player.appendChild(renderCard(card, game)))
+  const checkButton = renderCheck(game)
+  player.appendChild(checkButton)
   // append button to the player
   const button = renderButton(game)
   player.appendChild(button)

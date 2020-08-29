@@ -10,7 +10,10 @@ function check (game, initialNoOfCards, finalNoOfCards) {
       game.record = 'Bluffed'
     }
   }
-
+  //Resetting number of passes
+  game.passes = 0   
+  //Storing The index of the last player who didn't pass
+  game.lastTurn = game.turn
   // Calculating the number of cards added in this chance
   const noOfCardsMoved = finalNoOfCards - initialNoOfCards
   const msg = game.players[game.turn].name + ' added ' + noOfCardsMoved + ' card(s) to the stack.'
@@ -24,5 +27,5 @@ function check (game, initialNoOfCards, finalNoOfCards) {
 
   activatePlayer(game) // Activating the next player
 
-  console.log(game.record) // To see whether last player bluffed or not
+  console.log(game.lastTurn) // To see whether last player bluffed or not
 }

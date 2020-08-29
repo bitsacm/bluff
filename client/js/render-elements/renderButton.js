@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 function renderButton (game) {
   const button = document.createElement('button')
-  button.innerHTML = 'Finished selecting'
+  button.innerHTML = 'Pass'
   button.className = 'buttons'
   button.addEventListener('click', () => {
     const player = game.players.find(player => player.name === button.parentNode.id)
@@ -20,14 +20,18 @@ function renderButton (game) {
         }
       })
     })
-    player.selectedCards = []
-    const finalNoOfCards = game.centralStack.length
+    if ((player.selectedCards.length === 0) && game.firstMove === true) {
+      window.alert("The first Player can't pass, please add atleast one Card")
+    } else {
+      player.selectedCards = []
+      const finalNoOfCards = game.centralStack.length
 
-    deactivatePlayer(game)
-    bluffData(game, initialNoOfCards, finalNoOfCards)
-
-    // To see the current state of central stack
-    console.log(game.centralStack)
+      deactivatePlayer(game)
+      bluffData(game, initialNoOfCards, finalNoOfCards)
+      button.innerHTML = 'Pass'
+      // To see the current state of central stack
+      console.log(game.centralStack)
+      }
   })
   return button
 }

@@ -25,13 +25,19 @@ function renderCard (card, game) {
       player.selectedCards.splice(player.selectedCards.indexOf(newCard.id), 1)
       newCard.style.zIndex = '0'
       newCard.style.border = ''
+      if (player.selectedCards.length === 0) {
+        const button = newCard.parentNode.lastChild
+        button.innerHTML = "Pass"
+      }
     } else {
       player.selectedCards.push(newCard.id)
       newCard.style.border = '3px solid blue'
       newCard.style.zIndex = '1'
+      if (player.selectedCards.length === 1) {
+        const button = newCard.parentNode.lastChild
+        button.innerHTML = "Play Selected Cards"
+      }
     }
-
-    console.log(player.selectedCards)
   })
   return newCard
 }

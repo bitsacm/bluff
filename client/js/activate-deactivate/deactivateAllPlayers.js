@@ -11,5 +11,7 @@ function deactivateAllPlayers() {
       // disabling the button
       const button = player.querySelectorAll('.buttons')[0]
       button.disabled = true
+      const checkButton = player.querySelectorAll('.checkButtons')[0]
+      checkButton.disabled = true
     })
   }

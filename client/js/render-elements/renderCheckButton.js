@@ -46,7 +46,7 @@ function renderCheckButton (game) {
           const requiredPlayer = document.getElementById(game.players[requiredPlayerIndex].name)
           requiredPlayer.insertBefore(renderCard(card, game), requiredPlayer.querySelectorAll('.buttons')[0])
         })
-        msg = game.players[requiredPlayerIndex].name + ' Bluffed. \n Adding ' + game.centralStack.length + ' card(s) to ' + game.players[requiredPlayerIndex].name
+        msg = game.players[game.turn].name + ' caught ' + game.players[requiredPlayerIndex].name + "'s Bluff. \n Adding " + game.centralStack.length + ' card(s) to ' + game.players[requiredPlayerIndex].name
         window.alert(msg)
         // Deactivate the  player where cards where recently added
         deactivatePlayer(requiredPlayerIndex)
@@ -68,7 +68,7 @@ function renderCheckButton (game) {
           const requiredPlayer = document.getElementById(game.players[game.turn].name)
           requiredPlayer.insertBefore(renderCard(card, game), requiredPlayer.querySelectorAll('.buttons')[0])
         })
-        msg = game.players[requiredPlayerIndex].name + ' did not bluff. \n Adding ' + game.centralStack.length + ' card(s) to ' + game.players[game.turn].name
+        msg = game.players[game.turn].name + ' checked but ' + game.players[requiredPlayerIndex].name + ' did not bluff. \n Adding ' + game.centralStack.length + ' card(s) to ' + game.players[game.turn].name
         window.alert(msg)
         // Deactivate the player which checked
         deactivatePlayer(game.turn)

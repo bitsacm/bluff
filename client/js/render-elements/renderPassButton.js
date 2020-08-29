@@ -28,14 +28,17 @@ function renderPassButton (game) {
       if (numberOfPass === game.players.length) {
         window.alert('All players have passed.\nEnding round...')
         startNewRound(game)
-      }
-      // Changing turn to the next player
-      if (game.turn !== game.players.length - 1) {
-        game.turn += 1
+        // Activating the last player who passed
         activatePlayer(game)
       } else {
-        game.turn = 0
-        activatePlayer(game)
+      // Changing turn to the next player
+        if (game.turn !== game.players.length - 1) {
+          game.turn += 1
+          activatePlayer(game)
+        } else {
+          game.turn = 0
+          activatePlayer(game)
+        }
       }
       // Keeping track of the record
       console.log(game.record)

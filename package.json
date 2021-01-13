@@ -1,52 +1,46 @@
 {
   "name": "bluff",
   "version": "1.0.0",
-  "description": "### File structure",
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
-    "dev": "env-cmd config/dev.env nodemon server/index.js"
+    "dev": "env-cmd -f config/dev.env nodemon server/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bitsacm/bluff.git"
+    "url": "git+https://github.com/pratham1002/bluff-2.git"
   },
-  "author": "",
+  "author": "pratham1002",
   "license": "ISC",
   "engines": {
-    "node": "12.18.3"
+    "node": "12.20.0"
   },
   "bugs": {
-    "url": "https://github.com/bitsacm/bluff/issues"
+    "url": "https://github.com/pratham1002/bluff-2/issues"
   },
-  "homepage": "https://github.com/bitsacm/bluff#readme",
   "dependencies": {
-    "axios": "^0.19.2",
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
-    "ejs": "^3.0.1",
+    "admin-bro": "^3.3.1",
+    "admin-bro-expressjs": "^2.1.1",
+    "admin-bro-mongoose": "^0.5.2",
+    "axios": "^0.21.1",
+    "cards": "^1.1.0",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
-    "express-jwt": "^5.3.1",
-    "express-session": "^1.17.1",
-    "mongodb": "^3.5.4",
-    "mongoose": "^5.9.4",
-    "mongoose-findorcreate": "^3.0.0",
-    "passport": "^0.4.1",
-    "passport-google-oauth20": "^2.0.0",
-    "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^6.0.1",
-    "query-string": "^6.12.1",
-    "socket.io": "^2.3.0"
+    "googleapis": "^66.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.11.8",
+    "morgan": "^1.10.0",
+    "socket.io": "^3.0.4"
   },
   "devDependencies": {
-    "env-cmd": "^8.0.2",
-    "eslint": "^7.3.1",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
+    "env-cmd": "^10.1.0",
+    "eslint": "^7.16.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.6"
   }
 }

@@ -65,8 +65,11 @@ typings/
 
 # Some more unwanted files
 package-lock.json
+yarn.lock
 
 # vscode
 .vscode/*
 
 # Add any unwanted files here
+config/
+.adminbro/

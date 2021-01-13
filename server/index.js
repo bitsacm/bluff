@@ -1,8 +1,7 @@
-//importing app
-const app = require('./app')
-//port as enviroment variable
+const { server } = require('./app')
+require('./game/play')
 const port = process.env.PORT || 3000
-//server up check
-app.listen(port, () => {
-  console.log('Server is up on port ' + port)
+
+server.listen(port, () => {
+  console.log(`server is running on port : ${port}`)
 })

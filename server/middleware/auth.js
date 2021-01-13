@@ -1,37 +1,37 @@
-//userSchema
-const User = require("./../models/user")
-const bodyParser = require('body-parser')
- const passport = require("passport");
+// require jsonwebtoken npm for jwt based authentication
+const jwt = require('jsonwebtoken')
 
- const GoogleStrategy = require('passport-google-oauth20').Strategy;
+// import the user model
+const User = require('../models/user')
 
+const auth = async (req, res, next) => {
+  try {
+    // enabling both cookie and Bearer token auth for testing
+    const token = req.cookies.jwt
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+    // verify if the jwt auth token is valid and decode it
+    const decoded = jwt.verify(token, process.env.SECRET_KEY)
 
+    // find the user from the decoded jwt
+    const user = await User.findOne({
+      _id: decoded._id,
+      'tokens.token': token
+    })
 
-passport.use(User.createStrategy());
+    // check if the user exists, if not throw an error
+    if (!user) {
+      throw new Error('User not found')
+    }
 
-//serializing user creating session cookie
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
+    // the middleware provides the current user as req.user
+    req.user = user
+    req.token = token
 
-// deserializing cookie to get user info
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
-passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "https://acm-bluff.herokuapp.com/auth/google/home",
-  userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
-},
-// function for verify and storing user into database
-function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ googleId: profile.id}, function (err, user) {
-    return cb(err, user);
-  });
+    // proceed to the router
+    next()
+  } catch (error) {
+    res.status(401).send({ error: 'Please authenciate' })
+  }
 }
-));
+
+module.exports = auth

@@ -8,16 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pratham1002/bluff-2.git"
+    "url": "git+https://github.com/bitsacm/bluff.git"
   },
-  "author": "pratham1002",
+  "author": "",
   "license": "ISC",
-  "engines": {
-    "node": "12.20.0"
-  },
   "bugs": {
-    "url": "https://github.com/pratham1002/bluff-2/issues"
+    "url": "https://github.com/bitsacm/bluff/issues"
   },
+  "homepage": "https://github.com/bitsacm/bluff#readme",
   "dependencies": {
     "admin-bro": "^3.3.1",
     "admin-bro-expressjs": "^2.1.1",

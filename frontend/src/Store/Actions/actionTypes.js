@@ -1,0 +1,11 @@
+export const JOIN_START = "JOIN_START";
+export const JOIN_SUCCESS = "JOIN_SUCCESS";
+export const JOIN_FAIL = "JOIN_FAIL";
+
+export const START_START = "START_START";
+export const START_SUCCESS = "START_SUCCESS";
+export const START_FAIL = "START_FAIL";
+
+export const UPDATE_GAME_SUCCESS = "UPDATE_GAME_SUCCESS";
+export const UPDATE_GAME_START = "UPDATE_GAME_START";
+export const UPDATE_GAME_FAIL = "UPDATE_GAME_FAIL";

@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
-    "dev": "env-cmd -f config/dev.env nodemon server/index.js"
+    "dev": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "axios": "^0.21.1",
     "cards": "^1.1.0",
     "cookie-parser": "^1.4.5",
+    "create-react-app": "^4.0.1",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "googleapis": "^66.0.0",

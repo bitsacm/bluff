@@ -28,6 +28,7 @@ io.on('connection', (socket) => {
 
   // the game has started: send cards to all players
   socket.on('start', () => {
+    console.log("start");
     const user = getUser(socket.id)
     const game = getGame(user.room)
 

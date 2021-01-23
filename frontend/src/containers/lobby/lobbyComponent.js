@@ -17,7 +17,8 @@ class Lobby extends Component {
   }
 
   async componentDidMount() {
-    const socket = io();
+    console.log("inside did mount");
+    const socket = this.props.userSocket;
     socket.on('start', () => {
       this.props.startGameFromBack();
     });

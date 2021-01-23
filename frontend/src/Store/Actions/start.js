@@ -21,9 +21,8 @@ export const startFail = (error) => {
 
 
 const emitStart = async(dispatch, socket) => {
-  await socket.emit('start', () => {
-    dispatch(startSuccess()); 
-  })
+  await socket.emit('start');
+  dispatch(startSuccess()); 
 }
 
 export const start = (socket) => {

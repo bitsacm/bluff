@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as startCreators from '../../Store/Actions/start';
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 import { Button } from 'shards-react';
-import { rankIndex, suitIndex } from '../../cardsBoilerPlate';
-import * as actiontypes from '../../Store/Actions/actionTypes';
+// import { rankIndex, suitIndex } from '../../cardsBoilerPlate';
+// import * as actiontypes from '../../Store/Actions/actionTypes';
 
 class Lobby extends Component {
   
@@ -14,29 +14,25 @@ class Lobby extends Component {
     this.state = {
       playerList: []
     }
+    // const socket = props.userSocket;
+    // socket.on('start', () => {
+    //   props.startGameFromBack();
+    // });
+
+    // socket.on('update-game-state', (state, cards) => {
+    //   cards.sort((a,b) => {
+    //     if (rankIndex[a.rank.shortName] < rankIndex[b.rank.shortName] ||
+    //        (rankIndex[a.rank.shortName] === rankIndex[b.rank.shortName] &&
+    //          suitIndex[a.suit.name] < suitIndex[b.suit.name])) {
+    //       return -1;
+    //     }
+    //     return 1;
+    //   });
+    //   console.log("recieved game state, pushing to redux store", state, cards);
+    //   props.updateGameState(state, cards);
+    // });
   }
 
-  async componentDidMount() {
-    console.log("inside did mount");
-    const socket = this.props.userSocket;
-    socket.on('start', () => {
-      this.props.startGameFromBack();
-    });
-
-    socket.on('update-game-state', (state, cards) => {
-      cards.sort((a,b) => {
-        if (rankIndex[a.rank.shortName] < rankIndex[b.rank.shortName] ||
-           (rankIndex[a.rank.shortName] === rankIndex[b.rank.shortName] &&
-             suitIndex[a.suit.name] < suitIndex[b.suit.name])) {
-          return -1;
-        }
-        return 1;
-      });
-      console.log("recieved game state, pushing to redux store", state, cards);
-      this.props.updateGameState(state, cards);
-    });
-  }
-  
   Start = ({hasStarted, error, loading}) => {
     if(hasStarted) {
       return(
@@ -57,7 +53,7 @@ class Lobby extends Component {
         <div>
           <ul>
             {this.props.gameFetched ? 
-              this.props.gameState.playerList.map((player) => {
+              this.props.gameState.state.playerList.map((player) => {
                 return(
                   <h4>{player.name}</h4>
                 );
@@ -94,7 +90,7 @@ const mapDispatchtoProps = dispatch => {
   return {
     startGame: (Socket) => dispatch(startCreators.start(Socket)),
     startGameFromBack: () => dispatch(startCreators.startSuccess()),
-    updateGameState: (state, cards) => dispatch({type: actiontypes.UPDATE_GAME_SUCCESS, payload: { state, cards }})
+    // updateGameState: (state, cards) => dispatch({type: actiontypes.UPDATE_GAME_SUCCESS, payload: { state, cards }})
   }
 }
 

@@ -12,6 +12,7 @@ const gameReducer = (state = initialState, action) => {
       let newed = Object.create(state.gameData);
       newed.state = action.payload.state;
       newed.cards = action.payload.cards;
+      console.log(newed);
       return { gameFetched: true, gameData: newed};
     default:
       return {

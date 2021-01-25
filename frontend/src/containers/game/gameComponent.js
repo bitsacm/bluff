@@ -1,7 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Card, CardBody, CardTitle } from 'reactstrap';
+import classnames from 'classnames';
+import './game.css';
 
 class Game extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCards: new Set()
+    }
+  }
+
+  toggleCard = (id) => {
+    console.log(this.state.selectedCards);
+    let newDeck;
+    if(this.state.selectedCards.size === 0) {
+      newDeck = new Set();
+      newDeck.add(id);
+      this.setState({
+        selectedCards: newDeck
+      });
+    }
+    else {
+      newDeck = new Set(this.state.selectedCards);
+      if(this.state.selectedCards.has(id)) {
+        newDeck.delete(id);
+        this.setState({
+          selectedCards: newDeck
+        });
+      }
+      else {
+        newDeck.add(id);
+        this.setState({
+          selectedCards: newDeck
+        });
+      }
+    }
+    console.log(newDeck);
+  }
+  
   render() {
     console.log(this.props.gameState);
     return(
@@ -29,7 +68,20 @@ class Game extends Component {
         </div>
         <div className = "row">
           <div className = "col-12">
-            
+            <div className = "row">
+              { this.props.gameState ? 
+                this.props.gameState._cards.map((card) => {
+                  const isLit = this.state.selectedCards.has(card.id);
+                  return(
+                    <Card onClick = { () => { this.toggleCard(card.id); } } 
+                     className = { classnames( 'col-3 game-card', { 'active-card' : isLit })}>
+                      <CardTitle>{card.rank.shortName}</CardTitle>
+                      <CardBody>{card.suit.name}</CardBody>
+                    </Card>
+                  );
+                })
+              : <div/>}
+            </div>
           </div>
         </div>
       </div>

@@ -104,9 +104,9 @@ class Game {
     document.getElementById('root').appendChild($cardsDiv)
   }
 
-  callBluff () {
+  callBluff (heySocket) {
     // handle bluff button clicks here
-    socket.emit('call-bluff', (error) => {
+    heySocket.emit('call-bluff', (error) => {
       if (error) {
         alert(error)
       } else {

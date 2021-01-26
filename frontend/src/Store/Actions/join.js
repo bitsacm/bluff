@@ -8,10 +8,13 @@ export const joinStart = () => {
   };
 }
 
-export const joinSuccess = (socket) => {
+export const joinSuccess = (socket, userName, roomCode) => {
   return {
     type: actionTypes.JOIN_SUCCESS,
-    payload: socket
+    payload: { socket : socket,
+               userName: userName,
+               roomCode: roomCode
+    }
   };
 }
 
@@ -27,6 +30,10 @@ const emitJoin = async(userName, roomCode, dispatch) => {
   socket.on('start', () => {
     dispatch({ type: actionTypes.START_SUCCESS});
   });
+
+  socket.on('win', (name) => {
+    dispatch({ type: actionTypes.GAME_END, payload: name});
+  })
 
   socket.on('update-game-state', (state, cards) => {
     cards.sort((a,b) => {
@@ -44,7 +51,7 @@ const emitJoin = async(userName, roomCode, dispatch) => {
     if(error) {
       dispatch(joinFail(error));
     } else {
-      dispatch(joinSuccess(socket));
+      dispatch(joinSuccess(socket, userName, roomCode));
     }
   })
 }

@@ -35,7 +35,7 @@ class Game extends Component {
   }
 
   handlePlay = (game, socket) => {
-    if(this.state.selectedCards.length === 0) {
+    if(this.state.selectedCards.size === 0) {
       socket.emit('pass', (error) => {
         if(error) {
           alert(error);

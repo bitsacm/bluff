@@ -181,7 +181,7 @@ class Game extends Component {
           </div>
           <div className = "col-6">
             <Button 
-            disabled = { !this.props.gameState || this.props.userName !== this.props.gameState._state.turn }
+            disabled = { !this.props.gameState || this.props.userName !== this.props.gameState._state.turn || (this.props.gameState._state.firstTurn && this.state.selectedCards.size === 0)}
             className = "game-button"
             onClick = { () => { this.handlePlay(this.props.gameState, this.props.userSocket); }}>
             { this.state.selectedCards.size === 0 ? 'Pass' : 'Play selected cards'}

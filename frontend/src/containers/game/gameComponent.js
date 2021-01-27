@@ -4,7 +4,7 @@ import { Card, CardBody, CardTitle, Button } from 'reactstrap';
 import classnames from 'classnames';
 import './game.css';
 import { Modal, ModalHeader, ModalBody, FormSelect} from 'shards-react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import * as actionTypes from '../../Store/Actions/actionTypes';
 
 class Game extends Component {
@@ -130,6 +130,12 @@ class Game extends Component {
   
   render() {
     console.log(this.props.gameState);
+    console.log(this.props.hasJoined);
+    if(this.props.hasJoined === false) {
+      return(
+        <Redirect to = "/" />
+      );
+    }
     return(
       <div className = "container">
         <div className = "row">
@@ -151,6 +157,15 @@ class Game extends Component {
              ({this.props.gameState ? this.props.gameState._state.lastTurnSize : ''})</h5>
             <h5>Rank: {this.props.gameState ? ( this.props.gameState._state.currentRank || 'First turn' ) : ''}</h5>
             <h5>Turn: {this.props.gameState ? this.props.gameState._state.turn : '' }</h5>
+            <ul>
+              { (this.props.gameState && this.props.gameState._state.currentRound) ?
+                this.props.gameState._state.currentRound.map((info) => {
+                  return(
+                    <li>{info}</li>
+                  );
+                })
+              : <div/>}
+            </ul>
           </div>
         </div>
         <div className = "row">
@@ -230,7 +245,8 @@ const mapStatetoProps = state => {
     userSocket: state.joinStatus.socket,
     userName: state.joinStatus.userName,
     hasEnded: state.gameStatus.hasEnded,
-    winner: state.gameStatus.winner
+    winner: state.gameStatus.winner,
+    hasJoined: state.joinStatus.joinedIn
   };
 } 
 

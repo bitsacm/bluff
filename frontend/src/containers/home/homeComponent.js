@@ -3,7 +3,27 @@ import { Form, FormInput, FormGroup, Button } from 'shards-react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as joinCreators from '../../Store/Actions/join';
+import HomeLayout from './homeLayoutComponent';
+import styled from 'styled-components';
+import './home.css';
 
+const FormWhole = styled.div`
+  position: fixed;
+  top: 60px;
+  right: ${ props => props.widthOk ? '60px' : '50%'};
+  ${props => props.widthOk ? '' : 'margin-right:' + (props.width < 450 ? '-45%' : '-200px') + ';'}
+  width: ${props => props.width < 450 ? '90%' : '400px'};
+  height: 350px;
+  z-index: 4;
+`
+const Foot = styled.p`
+  position: fixed;
+  width: 200px;
+  bottom: 30px;
+  right: 50%;
+  margin-right: -100px;
+  text-align: center;
+`
 
 class Home extends Component {
   
@@ -12,8 +32,34 @@ class Home extends Component {
     this.state = {
       username: window.localStorage.getItem("userName"),
       roomCode: '',
-      disableSubmit: false
+      disableSubmit: false,
+      widthOk: (window.innerWidth >= 650 && window.innerWidth <= 900),
+      width: window.innerWidth
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimension);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimension);
+  }
+
+  updateDimension = () => {
+    this.setState({
+      width: window.innerWidth
+    });
+    if(window.innerWidth >= 650 && window.innerWidth <= 900) {
+      this.setState({
+        widthOk: true 
+      });
+    }
+    else {
+      this.setState({
+        widthOk: false
+      })
+    }
   }
 
   handleUsernameChange = (e) => {
@@ -58,28 +104,28 @@ class Home extends Component {
         alert("Error");
       }
       return(
-        <Form>
+        <Form className = "join-form">
           <FormGroup>
-            <label htmlFor="#username">Username</label>
+            <label className = "join-label" htmlFor="#username">Nick</label>
             <FormInput 
               id="#username" 
-              placeholder="Username" 
+              placeholder="What's your name" 
               autoComplete = "off"
               onChange = {this.handleUsernameChange} 
               value = {this.state.username}
               required/>
           </FormGroup>
           <FormGroup>
-            <label htmlFor="#roomCode">Room Code</label>
+            <label className = "join-label" htmlFor="#roomCode">Room Code</label>
             <FormInput id="#roomCode" 
-              placeholder="Enter the room code" 
+              placeholder="" 
               onChange = {this.handleRoomChange}
               value = { this.state.roomCode }
               autoComplete = "off"
               required/>
           </FormGroup>
           <FormGroup>
-            <Button disabled = {this.state.disableSubmit} type = "submit" onClick = {this.handleSubmit}>Play</Button>
+            <Button className = "join-play-button" disabled = {this.state.disableSubmit || !this.state.widthOk} type = "submit" onClick = {this.handleSubmit}>Play the game</Button>
           </FormGroup>
         </Form>
       );
@@ -88,15 +134,19 @@ class Home extends Component {
 
   render() {
     return(
-      <div className = "container">
-        <div className = "row">
-          <div className = "col-12">
-            <this.Formie joined = {this.props.hasJoined} 
-             error = {this.props.joinError} 
-             isLoading = {this.props.joinLoading}/>
-          </div>
-        </div>
-      </div>
+      <HomeLayout>
+        <FormWhole widthOk = {this.state.widthOk} width = {this.state.width}>
+          <h1 className = "join-header">Bluff</h1>
+          <this.Formie  joined = {this.props.hasJoined} 
+                        error = {this.props.joinError} 
+                        isLoading = {this.props.joinLoading}/>
+          <p className = "join-imp-info">It is recommended to play the game on meet with friends, splitting laptop screen in half.
+          Game won’t trigger until required dimensions are set.<br/>
+          <span className = "join-imp-highlight">Current width :</span>  {this.state.width}px<br/>
+          <span className = "join-imp-highlight">Width range allowed :</span> 650-900px</p>
+        </FormWhole>
+        <Foot>A project by BITS-ACM</Foot>
+      </HomeLayout>
     );
   }
 }

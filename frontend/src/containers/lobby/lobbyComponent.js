@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as startCreators from '../../Store/Actions/start';
-// import { io } from 'socket.io-client';
 import { Button } from 'shards-react';
-// import { rankIndex, suitIndex } from '../../cardsBoilerPlate';
-// import * as actiontypes from '../../Store/Actions/actionTypes';
 
 class Lobby extends Component {
   
@@ -14,23 +11,6 @@ class Lobby extends Component {
     this.state = {
       playerList: []
     }
-    // const socket = props.userSocket;
-    // socket.on('start', () => {
-    //   props.startGameFromBack();
-    // });
-
-    // socket.on('update-game-state', (state, cards) => {
-    //   cards.sort((a,b) => {
-    //     if (rankIndex[a.rank.shortName] < rankIndex[b.rank.shortName] ||
-    //        (rankIndex[a.rank.shortName] === rankIndex[b.rank.shortName] &&
-    //          suitIndex[a.suit.name] < suitIndex[b.suit.name])) {
-    //       return -1;
-    //     }
-    //     return 1;
-    //   });
-    //   console.log("recieved game state, pushing to redux store", state, cards);
-    //   props.updateGameState(state, cards);
-    // });
   }
 
   Start = ({hasStarted, error, loading}) => {

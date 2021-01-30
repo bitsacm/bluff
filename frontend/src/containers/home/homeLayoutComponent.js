@@ -30,12 +30,13 @@ const CardFixed = styled.img`
   right: -30px;
   @media (max-width: 650px) {
     opacity: 0;
+    width: 0;
   }
   animation-name: ${ (props) => Floating(props.degree, props.dist) }; 
   animation-duration: ${props => props.time}s; 
   animation-iteration-count: infinite; 
   animation-timing-function: linear;
-  transition: width 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out, opacity 0.5s ease-in-out;
   &:hover {
     width: 190px;
   }
@@ -49,12 +50,13 @@ const Card = styled.img`
   z-index: ${props => props.zindex};
   @media (max-width: 650px) {
     opacity: 0;
+    width: 0;
   }
   animation-name:  ${ (props) => Floating(props.degree, props.dist) }; 
   animation-duration: ${props => props.time}s; 
   animation-iteration-count: infinite; 
   animation-timing-function: linear;
-  transition: width 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out, opacity 0.5s ease-in-out;
   &:hover {
     width: 190px;
   }

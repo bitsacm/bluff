@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as startCreators from '../../Store/Actions/start';
 import { Button } from 'shards-react';
+import LobbyLayout from './lobbyLayoutComponent';
 
 class Lobby extends Component {
   
@@ -48,9 +49,11 @@ class Lobby extends Component {
   
   render() {
     return(
-      <this.Start hasStarted = {this.props.hasStarted} 
-       error = {this.props.startError} 
-       loading = {this.props.startLoading} />
+      <LobbyLayout>
+        <this.Start hasStarted = {this.props.hasStarted} 
+        error = {this.props.startError} 
+        loading = {this.props.startLoading} />
+      </LobbyLayout>
     );
   }
 }

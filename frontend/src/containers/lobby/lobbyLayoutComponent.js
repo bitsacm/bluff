@@ -101,27 +101,27 @@ class LobbyLayout extends Component {
         </CardBox>
         <CardBox>
           <Card src = {card1} 
-           dist = {3} 
+           dist = {3.5} 
            degree = {-60} 
-           time = {2}
+           time = {2.5}
            top = {120}
            right = {-10}
            zindex = {2}></Card>
         </CardBox>
         <CardBox>
           <Card src = {card2} 
-           dist = {3} 
+           dist = {4} 
            degree = {-85} 
-           time = {2}
+           time = {3}
            top = {180}
            right = {-10}
            zindex = {3}></Card> 
         </CardBox>
         <CardBox>
           <Card src = {card3} 
-           dist = {3} 
+           dist = {2} 
            degree = {-110} 
-           time = {2}
+           time = {3}
            top = {230}
            right = {-60}
            zindex = {4}></Card>

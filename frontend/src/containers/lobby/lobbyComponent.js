@@ -4,13 +4,29 @@ import { connect } from 'react-redux';
 import * as startCreators from '../../Store/Actions/start';
 import { Button } from 'shards-react';
 import LobbyLayout from './lobbyLayoutComponent';
+import styled from 'styled-components';
+import "./lobby.css";
+import { Link } from 'react-router-dom';
+import * as actionTypes from '../../Store/Actions/actionTypes'; 
+
+const LobbyWhole = styled.div`
+  position: fixed;
+  top: 50px;
+  left: ${ props => props.widthOk ? '60px' : '50%'};
+  ${props => props.widthOk ? '' : 'margin-left:' + (props.width < 450 ? '-45%' : '-200px') + ';'}
+  width: ${props => props.width < 450 ? '90%' : '400px'};
+  height: 350px;
+  z-index: 6;
+`
 
 class Lobby extends Component {
   
   constructor(props) {
     super(props);
     this.state = {
-      playerList: []
+      playerList: [],
+      widthOk: (window.innerWidth >= 650 && window.innerWidth <= 900),
+      width: window.innerWidth
     }
   }
 
@@ -20,39 +36,84 @@ class Lobby extends Component {
         <Redirect to = "/game" />
       );
     }
-    else {
-      if(loading) {
+    else{
+      if(!this.state.widthOk) {
         return(
-          <h5>Loading..</h5>
+          <h1>Set correct width of screen</h1>
         );
       }
-      if(error) {
-        alert("Error");
+      else {
+        if(loading) {
+          return(
+            <h5>Loading..</h5>
+          );
+        }
+        if(error) {
+          alert("Error");
+        }
+        const Socket = this.props.userSocket;
+        console.log(this.props.gameState);
+        return(
+          <div>
+            <h5 className = "lobby-room-label">Room code</h5>
+            <h1 className = "join-header">{this.props.gameState._state.room}</h1>
+            <div className = "join-form mt-4">
+              <h5 className = "lobby-playerbox-label mt-2">Players at present :</h5>
+              {this.props.gameFetched ? 
+                this.props.gameState.state.playerList.map((player) => {
+                  return(
+                    <h3 className = "lobby-player-names">{player.name}</h3>
+                  );
+                })
+              : <br/>}
+              <Button className = "join-play-button mt-3" onClick = {() => { this.props.startGame(Socket); }}>Start the game</Button>
+              <Link to = '/'>
+                <Button className = "join-white-play-button mt-2" onClick = { this.props.finish }>Leave the lobby</Button>
+              </Link>
+            </div>
+          </div>
+        );
       }
-      const Socket = this.props.userSocket;
-      return(
-        <div>
-          <ul>
-            {this.props.gameFetched ? 
-              this.props.gameState.state.playerList.map((player) => {
-                return(
-                  <h4>{player.name}</h4>
-                );
-              })
-            : <br/>}
-          </ul>
-          <Button onClick = {() => { this.props.startGame(Socket); }}>Start the game</Button>
-        </div>
-      );
     }
+  }
+
+  updateDimension = () => {
+    this.setState({
+      width: window.innerWidth
+    });
+    if(window.innerWidth >= 650 && window.innerWidth <= 900) {
+      this.setState({
+        widthOk: true 
+      });
+    }
+    else {
+      this.setState({
+        widthOk: false
+      })
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimension);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimension);
   }
   
   render() {
+    if(this.props.hasJoined === false) {
+      return(
+        <Redirect to = "/" />
+      );
+    }
     return(
       <LobbyLayout>
-        <this.Start hasStarted = {this.props.hasStarted} 
-        error = {this.props.startError} 
-        loading = {this.props.startLoading} />
+        <LobbyWhole widthOk = {this.state.widthOk} width = {this.state.width}>
+          <this.Start hasStarted = {this.props.hasStarted} 
+          error = {this.props.startError} 
+          loading = {this.props.startLoading} />
+        </LobbyWhole>
       </LobbyLayout>
     );
   }
@@ -65,7 +126,8 @@ const mapStatetoProps = state => {
     startLoading: state.startStatus.loading,
     gameState: state.gameStatus.gameData,
     gameFetched: state.gameStatus.gameFetched,
-    userSocket: state.joinStatus.socket
+    userSocket: state.joinStatus.socket,
+    hasJoined: state.joinStatus.joinedIn
   };
 }
 
@@ -73,6 +135,7 @@ const mapDispatchtoProps = dispatch => {
   return {
     startGame: (Socket) => dispatch(startCreators.start(Socket)),
     startGameFromBack: () => dispatch(startCreators.startSuccess()),
+    finish: () => { dispatch({ type: actionTypes.JOIN_TERMINATE }); }
     // updateGameState: (state, cards) => dispatch({type: actiontypes.UPDATE_GAME_SUCCESS, payload: { state, cards }})
   }
 }

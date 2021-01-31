@@ -36,6 +36,22 @@
   border-color: #368dc6 !important;
 }
 
+.join-white-play-button {
+  width: 100%;
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+  text-align: left !important;
+  font-family: 'Ubuntu', sans-serif !important;
+  color: #262626 !important;
+  font-weight: 500 !important;
+  font-size: 2.5em !important ;
+}
+
+.join-white-play-button:hover {
+  background-color: #949494 !important;
+  border-color: #949494 !important;
+}
+
 .join-imp-info {
   background-color: white;
   padding: 10px 15px 10px 15px;

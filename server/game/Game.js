@@ -39,7 +39,8 @@ class Game {
 
       this._players.forEach(player => playerList.push({ name: player.name }))
 
-      return { playerList: playerList }
+      return { playerList: playerList,
+               room: this.name }
     } else {
       const playerList = []
       const records = []
@@ -69,7 +70,8 @@ class Game {
         currentRank: this._currentRank,
         currentRound: records,
         turn: this._players[this._turn].name,
-        firstTurn: firstTurn
+        firstTurn: firstTurn,
+        room: this.name
       }
     }
   }

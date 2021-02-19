@@ -30,7 +30,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: window.localStorage.getItem("userName"),
+      username: window.sessionStorage.getItem("userName"),
       roomCode: '',
       disableSubmit: false,
       widthOk: (window.innerWidth >= 650 && window.innerWidth <= 900),
@@ -67,7 +67,7 @@ class Home extends Component {
     this.setState({
       username: e.target.value
     });
-    window.localStorage.setItem("userName",e.target.value);
+    window.sessionStorage.setItem("userName",e.target.value);
   };
 
   handleRoomChange = (e) => {

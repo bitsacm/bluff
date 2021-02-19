@@ -1,0 +1,205 @@
+.active-card {
+  border: medium solid blue !important;
+  width: 120px !important;
+  border-radius: 10px !important;
+}
+
+.active-card-holder {
+  z-index: -1 !important;
+  width: 25px !important;
+}
+
+.player-row {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  z-index: 40;
+  overflow-x: hidden;
+}
+
+.info-column {
+  padding: 0px 5px 0px 5px !important;
+}
+
+.your-column {
+  padding: 0px 0px 0px 5px !important;
+}
+
+.game-bg{
+  background-color: #E8E8E8 !important;
+  z-index: -50;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.card-row {
+  width: 85% !important;
+}
+
+.card-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 38vh;
+  min-height: 260px;
+  background-color: #262626;
+}
+
+.card-holder {
+  width: 20px;
+  display: inline-block;
+  z-index: 3;
+}
+
+.card-holder:hover {
+  width: 25px;
+}
+
+.game-card{
+  cursor: pointer !important;
+  width: 100px;
+  box-shadow: -3px 5px 14px -6px rgba(0,0,0,0.75);
+-webkit-box-shadow: -3px 5px 14px -6px rgba(0,0,0,0.75);
+-moz-box-shadow: -3px 5px 14px -6px rgba(0,0,0,0.75);
+  z-index: 3;
+}
+
+.game-card:hover {
+  border: medium solid red !important;
+  border-radius: 10px;
+}
+
+.game-table {
+  width: 250px;
+  height: 250px;
+  background-color: #ffffff;
+}
+
+.opponent-box {
+  text-align: center;
+}
+
+.opponent-name {
+  font-family: 'Ubuntu', sans-serif;
+  color: #262626;
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.opponent-card-num {
+  color: #368dc6;
+}
+
+.your-table {
+  background-color: #1a1a1a;
+  height: 45vh;
+  min-height: 310px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  z-index: -2;
+}
+
+
+.card-container::-webkit-scrollbar {
+  width: 0.6em;
+  border-radius: 5px !important;
+}
+ 
+.card-container::-webkit-scrollbar-track {
+  background-color: #E8E8E8;
+  border-radius: 5px !important;
+}
+ 
+.card-container::-webkit-scrollbar-thumb {
+  background-color: #368dc6;
+  border-radius: 5px !important;
+}
+
+.move-box {
+  background-color: #ffffff;
+  height: 30vh;
+  min-height: 203px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.game-button {
+  width: 100%;
+  background-color: #9ad7ff !important;
+  border-color: #9ad7ff !important;
+  text-align: center !important;
+  font-family: 'Ubuntu', sans-serif !important;
+  color: #262626 !important;
+  font-weight: 500 !important;
+  font-size: 1.3em !important ;
+  margin-bottom: 5px;
+}
+
+.game-button:hover {
+  background-color: #368dc6 !important;
+  border-color: #368dc6 !important;
+}
+
+.move-header {
+  color: #368dc6;
+  font-family: 'Ubuntu', sans-serif !important;
+  font-weight: 500;
+  padding: 5px 0px 5px 10px;
+}
+
+.rank-display {
+  width: 90px;
+  height: 90px;
+  position: relative;
+  z-index: 15;
+  border-radius: 50%;
+  background-color: #9ad7ff;
+  top: 185px;
+  left: 205px;
+  box-shadow: 2px 3px 10px -3px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 2px 3px 10px -3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 3px 10px -3px rgba(0,0,0,0.75);
+}
+
+.rank-display-vertical {
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.rank-display-text {
+  text-align: center !important;
+  margin: 0 !important;
+}
+
+.rank-display-sub {
+  text-align: center !important;
+  margin: 0 !important;
+  font-family: 'Ubuntu', sans-serif !important;
+  color: #1b1b1b;
+  font-weight: 400;
+}
+
+.your-table-heading {
+  font-family: 'Ubuntu', sans-serif !important;
+  margin: 0px 0px 5px 10px;
+  color: #E8E8E8;
+}
+
+.your-table-turn {
+  color: #9ad7ff;
+  font-size: 0.8em !important;
+}
+
+.game-table-card-box {
+  position: relative;
+  left: 75px;
+  top: 50px;
+}
+
+.top-stack-container {
+  height: 100px;
+}

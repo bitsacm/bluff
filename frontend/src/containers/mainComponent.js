@@ -3,6 +3,7 @@ import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
 import Home from "./home/homeComponent";
 import Game from "./game/gameComponent";
 import Lobby from "./lobby/lobbyComponent";
+import ActGame from "./actGame/actGameComponent";
 
 class Main extends Component {
   render() {
@@ -11,7 +12,7 @@ class Main extends Component {
         <Switch>
           <Route exact path = "/" component = {Home} />
           <Route path = "/lobby" component = {Lobby} />
-          <Route path = "/game" component = {Game} />
+          <Route path = "/game" component = {ActGame} />
           <Redirect to = "/"/>
         </Switch>
       </div>

@@ -386,10 +386,12 @@ class Game extends Component {
           </div>
         </div>
         <Modal open={this.state.modalVisible} toggle={this.toggleModal}>
-          <ModalHeader>How will you play this one?</ModalHeader>
+          <ModalHeader>
+            How will you play this one?
+          </ModalHeader>
           <ModalBody>
             <FormSelect value={this.state.rankValue} 
-             onChange={this.handleRankChange}>
+             onChange={this.handleRankChange} className = "modal-select">
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -404,7 +406,7 @@ class Game extends Component {
               <option value="K">King</option>
               <option value="A">Ace</option>
             </FormSelect>
-            <Button onClick = { () => { this.handleFirstTurn(this.props.gameState, this.props.userSocket); } } >End turn</Button>
+            <Button className = "modal-button" onClick = { () => { this.handleFirstTurn(this.props.gameState, this.props.userSocket); } } >End turn</Button>
           </ModalBody>
         </Modal>
         <Modal open={this.props.hasEnded}>
@@ -412,7 +414,7 @@ class Game extends Component {
           <ModalBody>
             <p>{this.props.winner} is the bluff master</p>
             <Link to = "/">
-              <Button onClick = { () => { this.props.finish(); } } className = "mt-2">Return to home</Button>
+              <Button className = "modal-button" onClick = { () => { this.props.finish(); } } className = "mt-2">Return to home</Button>
             </Link>
           </ModalBody>
         </Modal>

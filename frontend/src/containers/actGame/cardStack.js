@@ -13,20 +13,30 @@ const Card = styled.img`
   left: ${ (props) => props.spread }px;
 `
 
+const Cont = styled.div`
+  width: ${ (props) => props.width }px;
+  height: ${ (props) => props.height }px;
+  position: relative;
+  display: inline-block;
+  text-align: left;
+`
+
 class Stack extends Component {
   
   render() {
     const cards = [];
     let spread = 0;
-    let zindex = 50;
-    for(let i = 0; i < this.props.count; i++, spread+= this.props.spread, zindex--) {
+    let zindex = 0;
+    let width = 100;
+    for(let i = 0; i < this.props.count; i++, spread+= this.props.spread, zindex++) {
       cards.push(<Card rotation = { this.props.randomOrientation ? Math.floor(Math.random()*360) : 0} src = {cardBack} spread = {spread} zindex = {zindex}/>);
     }
+    width += spread;
     console.log(cards);
     return(
-      <div>
+      <Cont height = {this.props.takeSpace ? 147 : 0} width = {width}>
         {cards}
-      </div>
+      </Cont>
     );
   }
 

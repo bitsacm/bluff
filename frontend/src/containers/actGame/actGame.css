@@ -81,8 +81,9 @@
 .opponent-name {
   font-family: 'Ubuntu', sans-serif;
   color: #262626;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .opponent-card-num {
@@ -201,5 +202,24 @@
 }
 
 .top-stack-container {
-  height: 100px;
+  height: 50px;
+  position: relative;
+  bottom: 5px;
+  transform: rotate(180deg);
+}
+
+.left-stack-container {
+  margin-top: 20px;
+  width: 150px;
+  position: relative;
+  right: 50px;
+  transform: rotate(90deg);
+}
+
+.right-stack-container {
+  margin-top:20px;
+  width: 150px;
+  position: relative;
+  left: 70px;
+  transform: rotate(-90deg);
 }

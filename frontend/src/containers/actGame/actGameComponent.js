@@ -8,6 +8,7 @@ import { Link, Redirect } from 'react-router-dom';
 import * as actionTypes from '../../Store/Actions/actionTypes';
 import { suitConvert, rankConvert } from "../../cardGetter";
 import Stack from "./cardStack";
+import Prevent from "./preventComponent";
 
 class Game extends Component {
   
@@ -22,7 +23,9 @@ class Game extends Component {
       bottomRightDeck: {},
       selectedCards: new Set(),
       modalVisible: false,
-      rankValue: "2"
+      rankValue: "2",
+      widthOk: (window.innerWidth >= 650 && window.innerWidth <= 900),
+      width: window.innerWidth
     };
   }
 
@@ -67,6 +70,30 @@ class Game extends Component {
       }
     }
     return null;
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimension);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimension);
+  }
+
+  updateDimension = () => {
+    this.setState({
+      width: window.innerWidth
+    });
+    if(window.innerWidth >= 650 && window.innerWidth <= 900) {
+      this.setState({
+        widthOk: true 
+      });
+    }
+    else {
+      this.setState({
+        widthOk: false
+      })
+    }
   }
 
   handleBluff = (Socket) => {
@@ -189,16 +216,24 @@ class Game extends Component {
       );
     }
     //ok
+    if(!this.state.widthOk) {
+      return(
+        <Prevent width = {this.state.width}/>
+      );
+    }
     return(
       <div className = "game-bg">
         <div className = "row">
-          <div className = "col-4 opponent-box top-stack-container">
+          <div className = "col-4 opponent-box">
             { this.state.topLeftDeck.name !== undefined ? 
               <div>
+                <div className = "top-stack-container text-center" >
                   <Stack randomOrientation = {false}
                     count = {this.state.topLeftDeck.numberOfCards}
                     spread = {2}
+                    takeSpace = {true}
                   />
+                </div>
                 <p className = "opponent-name">
                   {this.state.topLeftDeck.name}
                   <span className = "opponent-card-num">{'(' + this.state.topLeftDeck.numberOfCards + ')'}</span>
@@ -207,13 +242,14 @@ class Game extends Component {
               : <div/>
             }
           </div>
-          <div className = "col-4 opponent-box top-stack-container">
+          <div className = "col-4 opponent-box">
             { this.state.middleDeck.name !== undefined ? 
               <div>
-                <div className = "">
+                <div className = "top-stack-container text-center" >
                   <Stack randomOrientation = {false}
                     count = {this.state.middleDeck.numberOfCards}
                     spread = {2}
+                    takeSpace = {true}
                   />
                 </div>
                 <p className = "opponent-name pt-auto">
@@ -226,28 +262,46 @@ class Game extends Component {
           </div>
           <div className = "col-4  opponent-box">
             { this.state.topRightDeck.name !== undefined ? 
-              <p className = "opponent-name">
-                {this.state.topRightDeck.name}
-                <span className = "opponent-card-num">{'(' + this.state.topRightDeck.numberOfCards + ')'}</span>
-              </p>
+              <div>
+                <div className = "top-stack-container text-center" >
+                  <Stack randomOrientation = {false}
+                    count = {this.state.topRightDeck.numberOfCards}
+                    spread = {2}
+                    takeSpace = {true}
+                  />
+                </div>
+                <p className = "opponent-name">
+                  {this.state.topRightDeck.name}
+                  <span className = "opponent-card-num">{'(' + this.state.topRightDeck.numberOfCards + ')'}</span>
+                </p>
+              </div>
               : <div/>
             }
           </div>
         </div>
         <div className = "row">
-          <div className = "col-3 opponent-box">
+          <div className = "col-3 opponent-box text-left">
             { this.state.bottomLeftDeck.name !== undefined ? 
-              <p className = "opponent-name">
-                {this.state.bottomLeftDeck.name}
-                <span className = "opponent-card-num">{'(' + this.state.bottomLeftDeck.numberOfCards + ')'}</span>
-              </p>
+              <div>
+                <div className = "left-stack-container text-center" >
+                  <Stack randomOrientation = {false}
+                    count = {this.state.bottomLeftDeck.numberOfCards}
+                    spread = {2}
+                    takeSpace = {true}
+                  />
+                </div>
+                <p className = "opponent-name text-left ml-2">
+                  {this.state.bottomLeftDeck.name}
+                  <span className = "opponent-card-num">{'(' + this.state.bottomLeftDeck.numberOfCards + ')'}</span>
+                </p>
+              </div>
               : <div/>
             }
           </div>
           <div className = "col-6">
             <div className = "game-table mx-auto">
               <div className = "game-table-card-box">
-                <Stack count = {this.props.gameState._state.totalCentralStackSize} randomOrientation = {true} spread = {0} />
+                <Stack count = {this.props.gameState._state.totalCentralStackSize} randomOrientation = {true} spread = {0} takeSpace = {false} />
               </div>
               <div className = "rank-display text-center">
                 <div className = "rank-display-vertical">
@@ -257,12 +311,21 @@ class Game extends Component {
               </div>
             </div>
           </div>
-          <div className = "col-3  opponent-box">
+          <div className = "col-3  opponent-box text-right">
             { this.state.bottomRightDeck.name !== undefined ? 
-              <p className = "opponent-name">
-                {this.state.bottomRightDeck.name}
-                <span className = "opponent-card-num">{'(' + this.state.bottomRightDeck.numberOfCards + ')'}</span>
-              </p>
+              <div>
+                <div className = "right-stack-container text-right">
+                  <Stack randomOrientation = {false}
+                      count = {this.state.bottomRightDeck.numberOfCards}
+                      spread = {2}
+                      takeSpace = {true}
+                    />
+                </div>
+                <p className = "opponent-name text-right mr-2">
+                  {this.state.bottomRightDeck.name}
+                  <span className = "opponent-card-num">{'(' + this.state.bottomRightDeck.numberOfCards + ')'}</span>
+                </p>
+              </div>
               : <div/>
             }
           </div>

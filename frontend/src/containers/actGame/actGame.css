@@ -223,3 +223,34 @@
   left: 70px;
   transform: rotate(-90deg);
 }
+
+.modal-header {
+  background-color: #262626 !important;
+}
+
+.modal-title {
+  color: #9ad7ff !important;
+  font-family: 'Ubuntu', sans-serif !important;
+}
+
+.modal-body {
+  background-color: #E8E8E8 !important;
+}
+
+.modal-button {
+  margin-top: 10px;
+  background-color: #9ad7ff !important;
+  font-family: 'Ubuntu', sans-serif !important;
+  color: #262626 !important;
+  border-width: 0px !important;
+  font-weight: 400 !important;
+  font-size: 1.1em !important;
+}
+
+.modal-button:hover {
+  background-color: #368dc6 !important;
+}
+
+.modal-select {
+  border-width: 0px !important;
+}

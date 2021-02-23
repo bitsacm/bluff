@@ -6,9 +6,8 @@ const Card = styled.img`
   width: 100px;
   position: absolute;
   transform: rotate(${ (props) => props.rotation}deg);
-  box-shadow: 1px 2px 1px -1px rgba(0,0,0,0.1);
--webkit-box-shadow: 1px 2px 1px -1px rgba(0,0,0,0.1);
--moz-box-shadow: 1px 2px 1px -1px rgba(0,0,0,0.1);
+  border-color: #E8e8e8 !important;
+  ${ (props) => props.shadow ? 'box-shadow: -2px 0px 0px 0px rgba(220,220,220,0.5); -webkit-box-shadow: -2px 0px 0px 0px rgba(220,220,220,0.5); -moz-box-shadow: -2px 0px 0px 0px rgba(220,220,220,0.5);' : ''}  
   z-index: ${ (props) => props.zindex};
   left: ${ (props) => props.spread }px;
 `
@@ -29,7 +28,7 @@ class Stack extends Component {
     let zindex = 0;
     let width = 100;
     for(let i = 0; i < this.props.count; i++, spread+= this.props.spread, zindex++) {
-      cards.push(<Card rotation = { this.props.randomOrientation ? Math.floor(Math.random()*360) : 0} src = {cardBack} spread = {spread} zindex = {zindex}/>);
+      cards.push(<Card rotation = { this.props.randomOrientation ? Math.floor(Math.random()*360) : 0} shadow = {this.props.shadow} src = {cardBack} spread = {spread} zindex = {zindex}/>);
     }
     width += spread;
     console.log(cards);

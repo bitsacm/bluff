@@ -161,6 +161,7 @@ class Game {
    */
   removePlayer (p) {
     this._players = this._players.filter(player => player.id !== p.id)
+    this.turn = this.turn % this.players.length
   }
 
   start () {

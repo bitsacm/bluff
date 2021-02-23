@@ -28,14 +28,18 @@ io.on('connection', (socket) => {
 
   // the game has started: send cards to all players
   socket.on('start', () => {
-    console.log("start");
-    const user = getUser(socket.id)
-    const game = getGame(user.room)
+    try {
+      console.log("start");
+      const user = getUser(socket.id)
+      const game = getGame(user.room)
 
-    game.start()
+      game.start()
 
-    game.players.forEach(player => io.to(player.id).emit('start'))
-    game.players.forEach(player => io.to(player.id).emit('update-game-state', game.state, player.cards))
+      game.players.forEach(player => io.to(player.id).emit('start'))
+      game.players.forEach(player => io.to(player.id).emit('update-game-state', game.state, player.cards))
+    } catch (e) {
+      callback(e.message)
+    }
   })
 
   socket.on('call-bluff', (callback) => {

@@ -115,6 +115,15 @@
   border-radius: 5px !important;
 }
 
+.move-box {
+  background-color: #ffffff;
+  height: 30vh;
+  min-height: 203px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
 .game-button {
   width: 100%;
   background-color: #9ad7ff !important;
@@ -132,6 +141,12 @@
   border-color: #368dc6 !important;
 }
 
+.move-header {
+  color: #368dc6;
+  font-family: 'Ubuntu', sans-serif !important;
+  font-weight: 500;
+  padding: 5px 0px 5px 10px;
+}
 .rank-display {
   width: 90px;
   height: 90px;

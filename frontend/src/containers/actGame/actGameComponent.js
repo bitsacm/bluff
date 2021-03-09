@@ -58,6 +58,7 @@ class Game extends Component {
           bottomLeftDeck: {name: undefined },
           bottomRightDeck: {name: undefined },
           middleDeck: {name: undefined },
+
         };
       }
       else if (nextProps.gameState._state.playerList.length === 4) {
@@ -79,15 +80,14 @@ class Game extends Component {
         };
       }
       else if (nextProps.gameState._state.playerList.length === 6) {
-        return {
           topLeftDeck: opponents[0],
           middleDeck: opponents[1],
           topRightDeck: opponents[2],
           bottomLeftDeck: opponents[3],
           bottomRightDeck: opponents[4]
         };
-      }
-    } else {
+      } 
+      else {
         this.props.winner = window.sessionStorage.getItem("userName")
         return {
           middleDeck: {name: undefined},
@@ -97,6 +97,7 @@ class Game extends Component {
           bottomRightDeck: {name: undefined }
         }
     };
+    return null;
   }
 
   componentDidMount() {

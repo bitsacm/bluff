@@ -9,6 +9,7 @@ import * as actionTypes from '../../Store/Actions/actionTypes';
 import { suitConvert, rankConvert } from "../../cardGetter";
 import Stack from "./cardStack";
 import Prevent from "./preventComponent";
+import MoveHistory from "./moveHistory/moveHistory"
 
 const importAll = require =>
   require.keys().reduce((acc, next) => {
@@ -43,20 +44,30 @@ class Game extends Component {
       opponents = nextProps.gameState._state.playerList.filter((player) => player.name !== window.sessionStorage.getItem("userName"));
       if (nextProps.gameState._state.playerList.length === 2) {
         return {
-          middleDeck: opponents[0]
+          middleDeck: opponents[0],
+          topLeftDeck: {name: undefined },
+          topRightDeck: {name: undefined },
+          bottomLeftDeck: {name: undefined },
+          bottomRightDeck: {name: undefined }
         };
       }
       else if (nextProps.gameState._state.playerList.length === 3) {
         return {
           topLeftDeck: opponents[0],
-          topRightDeck: opponents[1]
+          topRightDeck: opponents[1],
+          bottomLeftDeck: {name: undefined },
+          bottomRightDeck: {name: undefined },
+          middleDeck: {name: undefined },
+
         };
       }
       else if (nextProps.gameState._state.playerList.length === 4) {
         return {
           middleDeck: opponents[0],
           bottomLeftDeck: opponents[1],
-          bottomRightDeck: opponents[2]
+          bottomRightDeck: opponents[2],
+          topLeftDeck: {name: undefined },
+          topRightDeck: {name: undefined }
         };
       }
       else if (nextProps.gameState._state.playerList.length === 5) {
@@ -64,19 +75,28 @@ class Game extends Component {
           topLeftDeck: opponents[0],
           topRightDeck: opponents[1],
           bottomLeftDeck: opponents[2],
-          bottomRightDeck: opponents[3]
+          bottomRightDeck: opponents[3],
+          middleDeck: {name: undefined }
         };
       }
-      else {
-        return {
+      else if (nextProps.gameState._state.playerList.length === 6) {
           topLeftDeck: opponents[0],
           middleDeck: opponents[1],
           topRightDeck: opponents[2],
           bottomLeftDeck: opponents[3],
           bottomRightDeck: opponents[4]
         };
-      }
-    }
+      } 
+      else {
+        this.props.winner = window.sessionStorage.getItem("userName")
+        return {
+          middleDeck: {name: undefined},
+          topLeftDeck: {name: undefined },
+          topRightDeck: {name: undefined },
+          bottomLeftDeck: {name: undefined },
+          bottomRightDeck: {name: undefined }
+        }
+    };
     return null;
   }
 
@@ -251,7 +271,6 @@ class Game extends Component {
                 </div>
                 <p className="opponent-name">
                   {this.state.topLeftDeck.name}
-                  <span className="opponent-card-num">{'(' + this.state.topLeftDeck.numberOfCards + ')'}</span>
                 </p>
               </div>
               : <div />
@@ -270,7 +289,6 @@ class Game extends Component {
                 </div>
                 <p className="opponent-name pt-auto">
                   {this.state.middleDeck.name}
-                  <span className="opponent-card-num">{'(' + this.state.middleDeck.numberOfCards + ')'}</span>
                 </p>
               </div>
               : <div />
@@ -289,7 +307,6 @@ class Game extends Component {
                 </div>
                 <p className="opponent-name">
                   {this.state.topRightDeck.name}
-                  <span className="opponent-card-num">{'(' + this.state.topRightDeck.numberOfCards + ')'}</span>
                 </p>
               </div>
               : <div />
@@ -310,7 +327,6 @@ class Game extends Component {
                 </div>
                 <p className="opponent-name text-left ml-2">
                   {this.state.bottomLeftDeck.name}
-                  <span className="opponent-card-num">{'(' + this.state.bottomLeftDeck.numberOfCards + ')'}</span>
                 </p>
               </div>
               : <div />
@@ -342,7 +358,6 @@ class Game extends Component {
                 </div>
                 <p className="opponent-name text-right mr-2">
                   {this.state.bottomRightDeck.name}
-                  <span className="opponent-card-num">{'(' + this.state.bottomRightDeck.numberOfCards + ')'}</span>
                 </p>
               </div>
               : <div />
@@ -380,18 +395,7 @@ class Game extends Component {
             </div>
           </div>
           <div className="col-4 info-column">
-            <div className="move-box">
-              <h4 className="move-header">Move history</h4>
-              <ul>
-                {this.props.gameState && (this.props.gameState._state.currentRound !== undefined) ?
-                  this.props.gameState._state.currentRound.map((move) => {
-                    return (
-                      <li>{move}</li>
-                    );
-                  })
-                  : <div />}
-              </ul>
-            </div>
+            <MoveHistory moves={this.props.gameState && (this.props.gameState._state.currentRound !== undefined) ? this.props.gameState._state.currentRound : undefined }/>
             <Button
               disabled={!this.props.gameState || this.props.userName !== this.props.gameState._state.turn || (this.props.gameState._state.firstTurn && this.state.selectedCards.size === 0)}
               className="game-button"

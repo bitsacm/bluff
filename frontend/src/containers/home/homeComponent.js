@@ -9,7 +9,7 @@ import './home.css';
 
 const FormWhole = styled.div`
   position: fixed;
-  top: 60px;
+  top: 50px;
   right: ${ props => props.widthOk ? '60px' : '50%'};
   ${props => props.widthOk ? '' : 'margin-right:' + (props.width < 450 ? '-45%' : '-200px') + ';'}
   width: ${props => props.width < 450 ? '90%' : '400px'};
@@ -19,7 +19,7 @@ const FormWhole = styled.div`
 const Foot = styled.p`
   position: fixed;
   width: 200px;
-  bottom: 30px;
+  bottom: 0px;
   right: 50%;
   margin-right: -100px;
   text-align: center;
@@ -30,7 +30,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: window.localStorage.getItem("userName"),
+      username: window.sessionStorage.getItem("userName"),
       roomCode: '',
       disableSubmit: false,
       widthOk: (window.innerWidth >= 650 && window.innerWidth <= 900),
@@ -67,7 +67,7 @@ class Home extends Component {
     this.setState({
       username: e.target.value
     });
-    window.localStorage.setItem("userName",e.target.value);
+    window.sessionStorage.setItem("userName",e.target.value);
   };
 
   handleRoomChange = (e) => {
@@ -125,7 +125,7 @@ class Home extends Component {
               required/>
           </FormGroup>
           <FormGroup>
-            <Button className = "join-play-button" disabled = {this.state.disableSubmit || !this.state.widthOk} type = "submit" onClick = {this.handleSubmit}>Play the game</Button>
+            <Button className = "join-play-button" disabled = {this.state.disableSubmit || !this.state.widthOk} type = "submit" onClick = {this.handleSubmit}>Join the room</Button>
           </FormGroup>
         </Form>
       );

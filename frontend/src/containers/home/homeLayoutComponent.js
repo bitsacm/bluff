@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import card1 from '../../assets/Cards/DIAMOND-9.svg';
 import card2 from '../../assets/bluff card inverse.png';
 import card3 from '../../assets/Cards/CLUB-1.svg';
@@ -17,54 +17,49 @@ const CardBox = styled.div`
   height: 0 !important;
   width: 0 !important;
 `
+const Floating = (deg, dist) => keyframes`
+  from { transform: rotate(0deg) translateX(${dist}px) rotate(${deg}deg); }
+  to   { transform: rotate(360deg) translateX(${dist}px) rotate(${deg - 360}deg); }
+`
 const CardFixed = styled.img`
   position: fixed;
   bottom: 0;
   width: 180px;
   z-index: 1;
-  transform: rotate(-25deg);
+  transform: rotate(${ (props) => props.degree });
   right: -30px;
   @media (max-width: 650px) {
     opacity: 0;
+    width: 0;
+  }
+  animation-name: ${ (props) => Floating(props.degree, props.dist) }; 
+  animation-duration: ${props => props.time}s; 
+  animation-iteration-count: infinite; 
+  animation-timing-function: linear;
+  transition: width 0.2s ease-in-out, opacity 0.5s ease-in-out;
+  &:hover {
+    width: 190px;
   }
 `
-const CardOne = styled.img`
+const Card = styled.img`
   position: absolute;
   width: 180px; 
-  transform: rotate(20deg);
-  left: -50px;
-  top: -30px;
-  z-index: 1;
+  transform:  rotate(${ (props) => props.degree });
+  left: ${props => props.left}px;
+  top: ${props => props.top}px;
+  z-index: ${props => props.zindex};
   @media (max-width: 650px) {
     opacity: 0;
+    width: 0;
   }
-`
-const CardTwo = styled(CardOne)`
-  transform: rotate(-20deg);
-  z-index: 0;
-  top: 50px;
-  left: -30px;
-`
-const CardThree = styled(CardOne)`
-  transform: rotate(80deg);
-  top: 220px;
-  left: -90px;
-`
-const CardFour = styled(CardOne)`
-  z-index: 3;
-  transform: rotate(-15deg);
-  top: 370px;
-`
-const CardFive = styled(CardOne)`
-  transform: rotate(45deg);
-  top: 420px;
-  left: 0px;
-  z-index: 2;
-`
-const CardSix = styled(CardOne)`
-  transform: rotate(70deg);
-  top: 500px;
-  left: 0px;
+  animation-name:  ${ (props) => Floating(props.degree, props.dist) }; 
+  animation-duration: ${props => props.time}s; 
+  animation-iteration-count: infinite; 
+  animation-timing-function: linear;
+  transition: width 0.2s ease-in-out, opacity 0.5s ease-in-out;
+  &:hover {
+    width: 190px;
+  }
 `
 
 class HomeLayout extends Component {
@@ -72,24 +67,64 @@ class HomeLayout extends Component {
     return(
       <Bg>
         <CardBox>
-          <CardOne src = {card1}></CardOne>
+          <Card src = {card1} 
+           dist = {3} 
+           degree = {20} 
+           time = {2}
+           top = {-50}
+           left = {-30}
+           zindex = {1}></Card>
         </CardBox>
         <CardBox>
-          <CardTwo src = {card2}></CardTwo>
+          <Card src = {card2}
+           dist = {4} 
+           degree = {-20} 
+           time = {3}
+           top = {50}
+           left = {-30}
+           zindex = {0}></Card>
         </CardBox>
         <CardBox>
-          <CardThree src = {card3}></CardThree>
+          <Card src = {card3}
+           dist = {3} 
+           degree = {80} 
+           time = {3.5}
+           top = {220}
+           left = {-90}
+           zindex = {1}></Card>
         </CardBox>
         <CardBox>
-          <CardFour src = {card4}></CardFour>
+          <Card src = {card4}
+           dist = {5} 
+           degree = {-15} 
+           time = {4}
+           top = {370}
+           left = {-50}
+           zindex = {3}></Card>
         </CardBox>
         <CardBox>
-          <CardFive src = {card2}></CardFive>
+          <Card src = {card2}
+           dist = {2} 
+           degree = {45} 
+           time = {2.5}
+           top = {420}
+           left = {0}
+           zindex = {2}></Card>
         </CardBox>
         <CardBox>
-          <CardSix src = {card6}></CardSix>
+          <Card src = {card6}
+           dist = {6} 
+           degree = {70} 
+           time = {5}
+           top = {500}
+           left = {0}
+           zindex = {1}></Card>
         </CardBox>
-          <CardFixed src = {card2}></CardFixed>
+          <CardFixed src = {card2}
+           dist = {5} 
+           degree = {-25} 
+           time = {3.5}
+          ></CardFixed>
         {this.props.children}
       </Bg>
     );

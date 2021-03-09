@@ -35,6 +35,11 @@ const emitJoin = async(userName, roomCode, dispatch) => {
     dispatch({ type: actionTypes.GAME_END, payload: name});
   })
 
+  socket.on('disconnect', () => {
+    alert("You disconnected from the server");
+    window.location.replace(window.location.origin);
+  })
+
   socket.on('update-game-state', (state, cards) => {
     cards.sort((a,b) => {
       if (rankIndex[a.rank.shortName] < rankIndex[b.rank.shortName] ||

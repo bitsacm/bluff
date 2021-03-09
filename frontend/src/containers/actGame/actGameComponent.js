@@ -80,12 +80,13 @@ class Game extends Component {
         };
       }
       else if (nextProps.gameState._state.playerList.length === 6) {
+          return {
           topLeftDeck: opponents[0],
           middleDeck: opponents[1],
           topRightDeck: opponents[2],
           bottomLeftDeck: opponents[3],
           bottomRightDeck: opponents[4]
-        };
+        }
       } 
       else {
         this.props.winner = window.sessionStorage.getItem("userName")
@@ -96,7 +97,8 @@ class Game extends Component {
           bottomLeftDeck: {name: undefined },
           bottomRightDeck: {name: undefined }
         }
-    };
+    }
+    }
     return null;
   }
 

@@ -21,7 +21,8 @@ const joinReducer = (state = initialState, action) => {
     case actionTypes.JOIN_FAIL: 
       return { joinedIn: false, error: state.error, loading: false, socket: null, userName: undefined, roomCode: undefined}
     case actionTypes.JOIN_TERMINATE:
-      return { ...state, joinedIn: false, error: null}
+      window.location.href = window.location.href;
+      return { ...state, joinedIn: false, error: null, socket: null}
     default:
       return {
         ...state

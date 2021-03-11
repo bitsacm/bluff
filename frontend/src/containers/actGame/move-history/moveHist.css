@@ -1,0 +1,31 @@
+.move-box {
+  background-color: #ffffff;
+  height: 30vh;
+  min-height: 203px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.move-header {
+  color: #368dc6;
+  font-family: 'Ubuntu', sans-serif !important;
+  font-weight: 500;
+  padding: 5px 0px 5px 10px;
+}
+
+.move-box::-webkit-scrollbar {
+  width: 0.6em;
+  border-radius: 5px !important;
+}
+ 
+.move-box::-webkit-scrollbar-track {
+  background-color: #E8E8E8;
+  border-radius: 5px !important;
+}
+ 
+.move-box::-webkit-scrollbar-thumb {
+  background-color: #9ad7ff;
+  border-radius: 5px !important;
+}

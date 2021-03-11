@@ -1,0 +1,47 @@
+.game-table {
+  width: 250px;
+  height: 250px;
+  background-color: #ffffff;
+}
+
+.game-table-card-box {
+  position: relative;
+  left: 75px;
+  top: 50px;
+}
+
+.rank-display {
+  width: 90px;
+  height: 90px;
+  position: relative;
+  z-index: 15;
+  border-radius: 50%;
+  background-color: #9ad7ff;
+  top: 185px;
+  left: 205px;
+  box-shadow: 2px 3px 10px -3px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 2px 3px 10px -3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 3px 10px -3px rgba(0,0,0,0.75);
+}
+
+.rank-display-vertical {
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.rank-display-text {
+  text-align: center !important;
+  margin: 0 !important;
+}
+
+.rank-display-sub {
+  text-align: center !important;
+  margin: 0 !important;
+  font-family: 'Ubuntu', sans-serif !important;
+  color: #1b1b1b;
+  font-weight: 400;
+}

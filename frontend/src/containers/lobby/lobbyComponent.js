@@ -69,7 +69,7 @@ class Lobby extends Component {
               <Button 
                disabled = { this.props.gameState.state.playerList.length < 2 || this.props.gameState.state.playerList.length > 6}
                className = "join-play-button mt-3" 
-               onClick = {() => { this.props.startGame(Socket); }}>Start the game</Button>
+               onClick = {() => {  window.sessionStorage.setItem("inGame", "1"); this.props.startGame(Socket); }}>Start the game</Button>
               <Link to = '/'>
                 <Button className = "join-white-play-button mt-2" onClick = { this.props.finish }>Leave the lobby</Button>
               </Link>

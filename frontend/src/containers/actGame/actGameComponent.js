@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import classnames from 'classnames';
 import './actGame.css';
-import { Modal, ModalHeader, ModalBody, FormSelect } from 'shards-react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import * as actionTypes from '../../Store/Actions/actionTypes';
 import { suitConvert, rankConvert } from "../../cardGetter";
 import Stack from "./cardStack";
 import Prevent from "./preventComponent";
+import MoveHistory from "./move-history/moveHistComponent";
+import RankModal from "./rankModal/rankModalComponent";
+import EndModal from "./endModal/endModalComponent";
+import GameTable from "./gameTable/gameTableComponent";
 
 const importAll = require =>
   require.keys().reduce((acc, next) => {
@@ -33,15 +36,19 @@ class Game extends Component {
       modalVisible: false,
       rankValue: "2",
       widthOk: (window.innerWidth >= 650 && window.innerWidth <= 900),
-      width: window.innerWidth
+      width: window.innerWidth,
+      confirmPrompt: true
     };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     let opponents;
-    if (nextProps.gameState) {
+    if (nextProps.gameState && nextProps.gameState._state) {
       opponents = nextProps.gameState._state.playerList.filter((player) => player.name !== window.sessionStorage.getItem("userName"));
-      if (nextProps.gameState._state.playerList.length === 2) {
+      if (nextProps.gameState._state.playerList.length === 1) {
+
+      }
+      else if (nextProps.gameState._state.playerList.length === 2) {
         return {
           middleDeck: opponents[0]
         };
@@ -83,14 +90,29 @@ class Game extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.updateDimension);
     window.addEventListener('beforeunload', function (e) {
-      e.preventDefault();
-      e.returnValue = 'You would exit out of the game. Sure you wish to leave ?';
+      console.log(this.state.confirmPrompt);
+      if(this.state.confirmPrompt) {
+        e.preventDefault();
+        e.returnValue = 'You would exit out of the game. Sure you wish to leave ?';
+        this.setState({
+          confirmPrompt: true
+        });
+      }
     });
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateDimension);
-    window.removeEventListener('beforeunload');
+    window.removeEventListener('beforeunload', function (e) {
+      console.log(this.state.confirmPrompt);
+      if(this.state.confirmPrompt) {
+        e.preventDefault();
+        e.returnValue = 'You would exit out of the game. Sure you wish to leave ?';
+        this.setState({
+          confirmPrompt: true
+        });
+      }
+    });
   }
 
   updateDimension = () => {
@@ -220,16 +242,11 @@ class Game extends Component {
   }
 
   render() {
-    console.log(this.props.gameState);
-    console.log(this.props.hasJoined);
-    console.log(this.state);
-    console.log(images);
-    if (this.props.hasJoined !== true) {
+    if (this.props.hasJoined === false) {
       return (
         <Redirect to="/" />
       );
     }
-    //ok
     if (!this.state.widthOk) {
       return (
         <Prevent width={this.state.width} />
@@ -317,17 +334,7 @@ class Game extends Component {
             }
           </div>
           <div className="col-6">
-            <div className="game-table mx-auto">
-              <div className="game-table-card-box">
-                <Stack count={this.props.gameState._state.totalCentralStackSize} shadow={false} randomOrientation={true} spread={0} takeSpace={false} />
-              </div>
-              <div className="rank-display text-center">
-                <div className="rank-display-vertical">
-                  <h3 className="rank-display-text">{this.props.gameState ? (this.props.gameState._state.currentRank) : ''}</h3>
-                  <p className="rank-display-sub">{this.props.gameState._state.currentRank ? 'rank' : 'first turn'}</p>
-                </div>
-              </div>
-            </div>
+            <GameTable gameState = {this.props.gameState} />
           </div>
           <div className="col-3  opponent-box text-right">
             {this.state.bottomRightDeck.name !== undefined ?
@@ -380,18 +387,7 @@ class Game extends Component {
             </div>
           </div>
           <div className="col-4 info-column">
-            <div className="move-box">
-              <h4 className="move-header">Move history</h4>
-              <ul>
-                {this.props.gameState && (this.props.gameState._state.currentRound !== undefined) ?
-                  this.props.gameState._state.currentRound.map((move) => {
-                    return (
-                      <li>{move}</li>
-                    );
-                  })
-                  : <div />}
-              </ul>
-            </div>
+            <MoveHistory gameState = {this.props.gameState} />
             <Button
               disabled={!this.props.gameState || this.props.userName !== this.props.gameState._state.turn || (this.props.gameState._state.firstTurn && this.state.selectedCards.size === 0)}
               className="game-button"
@@ -404,39 +400,12 @@ class Game extends Component {
               onClick={() => { this.handleBluff(this.props.userSocket); }}>Call Bluff</Button>
           </div>
         </div>
-        <Modal open={this.state.modalVisible} toggle={this.toggleModal}>
-          <ModalHeader>
-            How will you play this one?
-          </ModalHeader>
-          <ModalBody>
-            <FormSelect value={this.state.rankValue}
-              onChange={this.handleRankChange} className="modal-select">
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="J">Jack</option>
-              <option value="Q">Queen</option>
-              <option value="K">King</option>
-              <option value="A">Ace</option>
-            </FormSelect>
-            <Button className="modal-button" onClick={() => { this.handleFirstTurn(this.props.gameState, this.props.userSocket); }} >End turn</Button>
-          </ModalBody>
-        </Modal>
-        <Modal open={this.props.hasEnded}>
-          <ModalHeader>Game has ended!</ModalHeader>
-          <ModalBody>
-            <p>{this.props.winner} is the bluff master</p>
-            <Link to="/">
-              <Button className="modal-button" onClick={() => { this.props.finish(); }} className="mt-2">Return to home</Button>
-            </Link>
-          </ModalBody>
-        </Modal>
+        <RankModal modalVisible = {this.state.modalVisible} 
+         toggleModal = {this.toggleModal} 
+         clicked = { () => { this.handleFirstTurn(this.props.gameState, this.props.userSocket); } }/>
+        <EndModal hasEnded = {this.props.hasEnded} 
+         winner = {this.props.winner}
+         finish = {() => { this.setState({ confirmPrompt: false}); this.props.finish(); }} />
       </div>
     );
   }
@@ -455,8 +424,9 @@ const mapStatetoProps = state => {
 
 const mapDispatchtoProps = dispatch => {
   return {
-    finish: () => { dispatch({ type: actionTypes.JOIN_TERMINATE }); }
-  }
+    finish: () => { dispatch({ type: actionTypes.JOIN_TERMINATE });}
+  };
 }
+
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(Game);

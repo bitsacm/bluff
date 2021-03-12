@@ -1,0 +1,22 @@
+.top-stack-container {
+  height: 50px;
+  position: relative;
+  bottom: 5px;
+  transform: rotate(180deg);
+}
+
+.opponent-box {
+  text-align: center;
+}
+
+.opponent-name {
+  font-family: 'Ubuntu', sans-serif;
+  color: #262626;
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.opponent-card-num {
+  color: #368dc6;
+}

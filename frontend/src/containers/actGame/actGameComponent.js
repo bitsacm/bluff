@@ -12,6 +12,7 @@ import MoveHistory from "./move-history/moveHistComponent";
 import RankModal from "./rankModal/rankModalComponent";
 import EndModal from "./endModal/endModalComponent";
 import GameTable from "./gameTable/gameTableComponent";
+import Opponent from "./topOpponent/opponentComponent";
 
 const importAll = require =>
   require.keys().reduce((acc, next) => {
@@ -255,63 +256,9 @@ class Game extends Component {
     return (
       <div className="game-bg">
         <div className="row">
-          <div className="col-4 opponent-box">
-            {this.state.topLeftDeck.name !== undefined ?
-              <div>
-                <div className="top-stack-container text-center" >
-                  <Stack randomOrientation={false}
-                    count={this.state.topLeftDeck.numberOfCards}
-                    spread={4}
-                    takeSpace={true}
-                    shadow={true}
-                  />
-                </div>
-                <p className="opponent-name">
-                  {this.state.topLeftDeck.name}
-                  <span className="opponent-card-num">{'(' + this.state.topLeftDeck.numberOfCards + ')'}</span>
-                </p>
-              </div>
-              : <div />
-            }
-          </div>
-          <div className="col-4 opponent-box">
-            {this.state.middleDeck.name !== undefined ?
-              <div>
-                <div className="top-stack-container text-center" >
-                  <Stack randomOrientation={false}
-                    count={this.state.middleDeck.numberOfCards}
-                    spread={4}
-                    takeSpace={true}
-                    shadow={true}
-                  />
-                </div>
-                <p className="opponent-name pt-auto">
-                  {this.state.middleDeck.name}
-                  <span className="opponent-card-num">{'(' + this.state.middleDeck.numberOfCards + ')'}</span>
-                </p>
-              </div>
-              : <div />
-            }
-          </div>
-          <div className="col-4  opponent-box">
-            {this.state.topRightDeck.name !== undefined ?
-              <div>
-                <div className="top-stack-container text-center" >
-                  <Stack randomOrientation={false}
-                    count={this.state.topRightDeck.numberOfCards}
-                    spread={4}
-                    takeSpace={true}
-                    shadow={true}
-                  />
-                </div>
-                <p className="opponent-name">
-                  {this.state.topRightDeck.name}
-                  <span className="opponent-card-num">{'(' + this.state.topRightDeck.numberOfCards + ')'}</span>
-                </p>
-              </div>
-              : <div />
-            }
-          </div>
+          <Opponent deck = {this.state.topLeftDeck} current = {this.props.gameState._state.turn} /> 
+          <Opponent deck = {this.state.middleDeck} current = {this.props.gameState._state.turn} /> 
+          <Opponent deck = {this.state.topRightDeck} current = {this.props.gameState._state.turn} /> 
         </div>
         <div className="row">
           <div className="col-3 opponent-box text-left">
@@ -327,7 +274,7 @@ class Game extends Component {
                 </div>
                 <p className="opponent-name text-left ml-2">
                   {this.state.bottomLeftDeck.name}
-                  <span className="opponent-card-num">{'(' + this.state.bottomLeftDeck.numberOfCards + ')'}</span>
+                  <span className="opponent-card-num">{ this.props.gameState._state.turn === this.state.bottomLeftDeck.name ? '\'s turn' : ''}</span>
                 </p>
               </div>
               : <div />
@@ -349,7 +296,7 @@ class Game extends Component {
                 </div>
                 <p className="opponent-name text-right mr-2">
                   {this.state.bottomRightDeck.name}
-                  <span className="opponent-card-num">{'(' + this.state.bottomRightDeck.numberOfCards + ')'}</span>
+                  <span className="opponent-card-num">{ this.props.gameState._state.turn === this.state.bottomRightDeck.name ? '\'s turn' : ''}</span>
                 </p>
               </div>
               : <div />
@@ -360,9 +307,9 @@ class Game extends Component {
           <div className="col-8 your-column">
             <div className="your-table">
               <h4 className="your-table-heading pt-2">
-                {window.sessionStorage.getItem("userName") + "'s deck "}
+                {window.sessionStorage.getItem("userName") + "'s deck (" + this.props.gameState._cards.length + ")"}
                 <span className=" your-table-turn">
-                  {this.props.gameState && (window.sessionStorage.getItem("userName") === this.props.gameState._state.turn) ? "(Your turn)" : ""}
+                  {this.props.gameState && (window.sessionStorage.getItem("userName") === this.props.gameState._state.turn) ? " Your turn" : ""}
                 </span>
               </h4>
               <div className="card-container">

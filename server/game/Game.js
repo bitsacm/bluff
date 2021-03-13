@@ -111,7 +111,7 @@ class Game {
     }
 
     const lastNonPassTurn = this._currentRound.reverse().find((turn) => turn.cards !== 'Pass')
-
+    this._currentRound = this._currentRound.reverse()
     if (lastNonPassTurn.player.id === player.id) {
       throw new Error('cannot call bluff on yourself')
     }

@@ -2,8 +2,8 @@
 const Player = require('./Player')
 const Game = require('./Game')
 
-const games = []
-const users = []
+let games = []
+let users = []
 
 /**
  * @param {string} name
@@ -58,11 +58,7 @@ const removeUser = (id) => {
     const user = users.find((u) => u.id === id)
 
     // remove users from list of users
-    const index = users.findIndex((user) => user.id === id)
-
-    if (index !== -1) {
-      const _ = users.splice(index, 1)[0]
-    }
+    users = users.filter((u) => u.id !== id)
 
     // remove user from game
     const game = getGame(user.room)
@@ -72,6 +68,8 @@ const removeUser = (id) => {
       removeGame(game)
     }
 
+    console.log({users, games})
+
     return user
   } catch (e) {
     console.log(e)
@@ -79,12 +77,8 @@ const removeUser = (id) => {
 }
 
 const removeGame = (g) => {
-  // remove users from list of users
-  const index = games.findIndex((game) => g.name === game.name)
-
-  if (index !== -1) {
-    const _ = games.splice(index, 1)[0]
-  }
+  // remove game from list of games
+  games = games.filter((game) => g.name !== game.name)
 }
 
 /**

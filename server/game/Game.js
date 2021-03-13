@@ -83,7 +83,7 @@ class Game {
     this._currentRound = this._currentRound.reverse()
 
     if (lastNonPassTurn && lastNonPassTurn.player.cards.length === 0) {
-      return io.sockets.in(player.room).emit('win', lastNonPassTurn.player.name)
+      return this._win(lastNonPassTurn.player)
     }
 
     this._addToCentralStack(player, cards, rank)
@@ -96,7 +96,7 @@ class Game {
     this._verifyPlayer(player)
 
     if (player.cards.length === 0) {
-      return io.sockets.in(player.room).emit('win', player.name)
+      return this._win(player)
     }
 
     this._addToRecord(player, null)
@@ -122,7 +122,7 @@ class Game {
       lastNonPassTurn.player.cards = lastNonPassTurn.player.cards.concat(this._centralStack)
 
       if (player.cards.length === 0) {
-        return io.sockets.in(player.room).emit('win', player.name)
+        return this._win(player)
       }
     } else {
       player.cards = player.cards.concat(this._centralStack)
@@ -140,7 +140,7 @@ class Game {
    */
   addPlayer (p) {
     // check for max number of players
-    if (this._players.length === 12) {
+    if (this._players.length === 6) {
       throw new Error('Room full')
     }
     // check if game has already started
@@ -161,7 +161,15 @@ class Game {
    */
   removePlayer (p) {
     this._players = this._players.filter(player => player.id !== p.id)
-    this.turn = this.turn % this.players.length
+    this._turn = this._turn % this.players.length
+
+    if (this.players.length === 1) {
+      this._win(this.players[0])
+    }
+  }
+
+  _win(player) {
+    io.sockets.in(player.room).emit('win', player.name)
   }
 
   start () {
@@ -277,11 +285,6 @@ class Game {
 
     // for more than 5 players add a deck
     if (this._players.length > 5) {
-      deck.merge(new decks.StandardDeck({ jokers: 2 }))
-    }
-
-    // for more than 10 players, add another deck
-    if (this._players.length > 10) {
       deck.merge(new decks.StandardDeck({ jokers: 2 }))
     }
 

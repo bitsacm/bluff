@@ -1,4 +1,3 @@
-const bodyParser = require('body-parser')
 const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
@@ -44,15 +43,17 @@ app.use(express.static(path.join(__dirname, '../frontend/build')));
 // const googleAuth = require('./oauth2/googleAuthRouters')
 
 // app.use(googleAuth)
+
+// serve the react app for all incoming requests
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
 })
 // Next 5 lines help in parsing input and getting req.body
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.urlencoded({extended: false}))
 // parse application/json
-app.use(bodyParser.json())
+app.use(express.json())
 // parse application/vnd.api+json as json
-app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
+app.use(express.json({ type: 'application/vnd.api+json' }))
 
 // parses cookies and gives an object req.cookies
 app.use(cookieParser())

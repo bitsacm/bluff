@@ -255,52 +255,54 @@ class Game extends Component {
     }
     return (
       <div className="game-bg">
-        <div className="row">
-          <Opponent deck = {this.state.topLeftDeck} current = {this.props.gameState._state.turn} /> 
-          <Opponent deck = {this.state.middleDeck} current = {this.props.gameState._state.turn} /> 
-          <Opponent deck = {this.state.topRightDeck} current = {this.props.gameState._state.turn} /> 
-        </div>
-        <div className="row">
-          <div className="col-3 opponent-box text-left">
-            {this.state.bottomLeftDeck.name !== undefined ?
-              <div>
-                <div className="left-stack-container text-center" >
-                  <Stack randomOrientation={false}
-                    count={this.state.bottomLeftDeck.numberOfCards}
-                    spread={4}
-                    takeSpace={true}
-                    shadow={true}
-                  />
-                </div>
-                <p className="opponent-name text-left ml-2">
-                  {this.state.bottomLeftDeck.name}
-                  <span className="opponent-card-num">{ this.props.gameState._state.turn === this.state.bottomLeftDeck.name ? '\'s turn' : ''}</span>
-                </p>
-              </div>
-              : <div />
-            }
+        <div className = "card-zone">
+          <div className="row">
+            <Opponent deck = {this.state.topLeftDeck} current = {this.props.gameState._state.turn} /> 
+            <Opponent deck = {this.state.middleDeck} current = {this.props.gameState._state.turn} /> 
+            <Opponent deck = {this.state.topRightDeck} current = {this.props.gameState._state.turn} /> 
           </div>
-          <div className="col-6">
-            <GameTable gameState = {this.props.gameState} />
-          </div>
-          <div className="col-3  opponent-box text-right">
-            {this.state.bottomRightDeck.name !== undefined ?
-              <div>
-                <div className="right-stack-container text-right">
-                  <Stack randomOrientation={false}
-                    count={this.state.bottomRightDeck.numberOfCards}
-                    spread={4}
-                    takeSpace={true}
-                    shadow={true}
-                  />
+          <div className="row">
+            <div className="col-3 opponent-box text-left">
+              {this.state.bottomLeftDeck.name !== undefined ?
+                <div>
+                  <div className="left-stack-container text-center" >
+                    <Stack randomOrientation={false}
+                      count={this.state.bottomLeftDeck.numberOfCards}
+                      spread={4}
+                      takeSpace={true}
+                      shadow={true}
+                    />
+                  </div>
+                  <p className="opponent-name text-left ml-2">
+                    {this.state.bottomLeftDeck.name}
+                    <span className="opponent-card-num">{ this.props.gameState._state.turn === this.state.bottomLeftDeck.name ? '\'s turn' : ''}</span>
+                  </p>
                 </div>
-                <p className="opponent-name text-right mr-2">
-                  {this.state.bottomRightDeck.name}
-                  <span className="opponent-card-num">{ this.props.gameState._state.turn === this.state.bottomRightDeck.name ? '\'s turn' : ''}</span>
-                </p>
-              </div>
-              : <div />
-            }
+                : <div />
+              }
+            </div>
+            <div className="col-6">
+              <GameTable gameState = {this.props.gameState} />
+            </div>
+            <div className="col-3  opponent-box text-right">
+              {this.state.bottomRightDeck.name !== undefined ?
+                <div>
+                  <div className="right-stack-container text-right">
+                    <Stack randomOrientation={false}
+                      count={this.state.bottomRightDeck.numberOfCards}
+                      spread={4}
+                      takeSpace={true}
+                      shadow={true}
+                    />
+                  </div>
+                  <p className="opponent-name text-right mr-2">
+                    {this.state.bottomRightDeck.name}
+                    <span className="opponent-card-num">{ this.props.gameState._state.turn === this.state.bottomRightDeck.name ? '\'s turn' : ''}</span>
+                  </p>
+                </div>
+                : <div />
+              }
+            </div>
           </div>
         </div>
         <div className="mt-3 player-row d-flex">

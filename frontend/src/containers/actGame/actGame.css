@@ -68,22 +68,6 @@
   border-radius: 10px;
 }
 
-.opponent-box {
-  text-align: center;
-}
-
-.opponent-name {
-  font-family: 'Ubuntu', sans-serif;
-  color: #262626;
-  font-size: 1.2em;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.opponent-card-num {
-  color: #368dc6;
-}
-
 .your-table {
   background-color: #1a1a1a;
   height: 45vh;
@@ -137,13 +121,6 @@
   font-size: 0.8em !important;
 }
 
-.top-stack-container {
-  height: 50px;
-  position: relative;
-  bottom: 5px;
-  transform: rotate(180deg);
-}
-
 .left-stack-container {
   margin-top: 20px;
   width: 150px;
@@ -189,4 +166,26 @@
 
 .modal-select {
   border-width: 0px !important;
+}
+
+.card-zone {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 55vh;
+  min-height: calc(100vh - 310px);
+}
+
+.card-zone::-webkit-scrollbar {
+  width: 0.6em;
+  border-radius: 5px !important;
+}
+ 
+.card-zone::-webkit-scrollbar-track {
+  background-color: #E8E8E8;
+  border-radius: 5px !important;
+}
+ 
+.card-zone::-webkit-scrollbar-thumb {
+  background-color: #368dc6;
+  border-radius: 5px !important;
 }

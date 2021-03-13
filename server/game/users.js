@@ -68,8 +68,6 @@ const removeUser = (id) => {
       removeGame(game)
     }
 
-    console.log({users, games})
-
     return user
   } catch (e) {
     console.log(e)

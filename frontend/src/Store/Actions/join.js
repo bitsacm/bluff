@@ -54,6 +54,7 @@ const emitJoin = async(userName, roomCode, dispatch) => {
   });
   await socket.emit('join', userName, roomCode, (error) => {
     if(error) {
+      alert(error);
       dispatch(joinFail(error));
     } else {
       dispatch(joinSuccess(socket, userName, roomCode));

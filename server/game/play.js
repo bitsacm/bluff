@@ -16,6 +16,9 @@ io.on('connection', (socket) => {
   socket.on('join', (username, room, callback) => {
     try {
       const user = addUser(socket.id, username, room)
+      if(!user) {
+        throw new Error('Cannot join this room.');
+      }
       const game = getGame(user.room)
       socket.join(user.room)
 

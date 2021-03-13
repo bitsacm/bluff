@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
 import card1 from '../../assets/Cards/DIAMOND-9.svg';
 import card2 from '../../assets/bluff card inverse.png';
-import card3 from '../../assets/Cards/CLUB-1.svg';
 import card4 from '../../assets/Cards/HEART-11-JACK.svg';
 import card6 from '../../assets/Cards/SPADE-7.svg';
+import card7 from '../../assets/instructions.png';
+import card8 from '../../assets/gitcard.png';
+import Instructions from '../instructionModal';
 
 const Bg = styled.div`
   height: 100vh;
@@ -25,6 +27,7 @@ const CardFixed = styled.img`
   position: fixed;
   bottom: 0;
   width: 180px;
+  cursor: pointer;
   z-index: 1;
   transform: rotate(${ (props) => props.degree });
   right: -30px;
@@ -63,6 +66,19 @@ const Card = styled.img`
 `
 
 class HomeLayout extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalVisible: false
+    };
+  }
+  
+  toggleModal = () => {
+    this.setState({
+      modalVisible: !this.state.modalVisible
+    });
+  }
+
   render() {
     return(
       <Bg>
@@ -76,22 +92,15 @@ class HomeLayout extends Component {
            zindex = {1}></Card>
         </CardBox>
         <CardBox>
-          <Card src = {card2}
-           dist = {4} 
-           degree = {-20} 
-           time = {3}
-           top = {50}
-           left = {-30}
-           zindex = {0}></Card>
-        </CardBox>
-        <CardBox>
-          <Card src = {card3}
-           dist = {3} 
-           degree = {80} 
-           time = {3.5}
-           top = {220}
-           left = {-90}
-           zindex = {1}></Card>
+          <a href = "https://github.com/bitsacm/bluff" rel = "noreferrer" target = "_blank">
+            <Card src = {card8}
+            dist = {4} 
+            degree = {10} 
+            time = {3}
+            top = {50}
+            left = {-30}
+            zindex = {3}></Card>
+          </a>
         </CardBox>
         <CardBox>
           <Card src = {card4}
@@ -120,12 +129,14 @@ class HomeLayout extends Component {
            left = {0}
            zindex = {1}></Card>
         </CardBox>
-          <CardFixed src = {card2}
+          <CardFixed src = {card7}
            dist = {5} 
            degree = {-25} 
            time = {3.5}
+           onClick = {this.toggleModal}
           ></CardFixed>
         {this.props.children}
+        <Instructions modalVisible = {this.state.modalVisible} toggleModal = {this.toggleModal}/>
       </Bg>
     );
   }

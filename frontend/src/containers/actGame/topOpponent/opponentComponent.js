@@ -5,7 +5,7 @@ import Stack from "../cardStack";
 function Opponent(props) {
   return(
     <div className="col-4 opponent-box">
-      {props.deck.name !== undefined ?
+      {props.deck !== undefined ?
         <div>
           <div className="top-stack-container text-center" >
             <Stack randomOrientation={false}

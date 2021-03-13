@@ -32,9 +32,9 @@ class Home extends Component {
     this.state = {
       username: window.sessionStorage.getItem("userName"),
       roomCode: '',
-      disableSubmit: false,
-      widthOk: (window.innerWidth >= 650 && window.innerWidth <= 900),
-      width: window.innerWidth
+      widthOk: (window.innerWidth >= 600 && window.innerWidth <= 950),
+      width: window.innerWidth,
+      tooltipText: (window.innerWidth >= 600 && window.innerWidth <= 950) ? '' : 'Incorrect screen width'
     };
   }
 
@@ -50,14 +50,16 @@ class Home extends Component {
     this.setState({
       width: window.innerWidth
     });
-    if(window.innerWidth >= 650 && window.innerWidth <= 900) {
+    if(window.innerWidth >= 600 && window.innerWidth <= 950) {
       this.setState({
-        widthOk: true 
+        widthOk: true,
+        tooltipText: ''
       });
     }
     else {
       this.setState({
-        widthOk: false
+        widthOk: false,
+        tooltipText: 'Incorrect screen width'
       })
     }
   }
@@ -79,9 +81,6 @@ class Home extends Component {
 
   handleSubmit = async(e) => {
     e.preventDefault();
-    this.setState({
-      disableSubmit: true
-    });
     const username = this.state.username.trim().toLowerCase();
     const roomcode = this.state.roomCode.trim().toLowerCase();
     this.props.joinGame(username, roomcode);
@@ -125,7 +124,11 @@ class Home extends Component {
               required/>
           </FormGroup>
           <FormGroup>
-            <Button className = "join-play-button" disabled = {this.state.disableSubmit || !this.state.widthOk} type = "submit" onClick = {this.handleSubmit}>Join the room</Button>
+            <span className = "d-inline-block join-play-wrap" tabIndex = "0" data-toggle = "tooltip" title = {this.state.tooltipText} >
+              <Button className = "join-play-button" 
+              disabled = {this.state.joinLoading || !this.state.widthOk} 
+              type = "submit" onClick = {this.handleSubmit}>Join the room</Button>
+            </span>
           </FormGroup>
         </Form>
       );
@@ -140,10 +143,10 @@ class Home extends Component {
           <this.Formie  joined = {this.props.hasJoined} 
                         error = {this.props.joinError} 
                         isLoading = {this.props.joinLoading}/>
-          <p className = "join-imp-info">It is recommended to play the game on meet with friends, splitting laptop screen in half.
-          Game won’t trigger until required dimensions are set.<br/>
-          <span className = "join-imp-highlight">Current width :</span>  {this.state.width}px<br/>
-          <span className = "join-imp-highlight">Width range allowed :</span> 650-900px</p>
+          <p className = "join-imp-info">Play the game on meet with friends, splitting laptop screen in half.
+            Set required dimensions before joining.<br/>
+          <span className = "join-imp-highlight">Current width :  {this.state.width}px</span><br/>
+          <span className = "join-imp-highlight">Width range allowed : 600-950px</span></p>
         </FormWhole>
         <Foot>A project by BITS-ACM</Foot>
       </HomeLayout>

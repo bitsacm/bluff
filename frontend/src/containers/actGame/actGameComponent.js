@@ -36,33 +36,48 @@ class Game extends Component {
       selectedCards: new Set(),
       modalVisible: false,
       rankValue: "2",
-      widthOk: (window.innerWidth >= 650 && window.innerWidth <= 900),
+      widthOk: (window.innerWidth >= 600 && window.innerWidth <= 950),
       width: window.innerWidth,
       confirmPrompt: true
     };
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(nextProps) {
     let opponents;
     if (nextProps.gameState && nextProps.gameState._state) {
       opponents = nextProps.gameState._state.playerList.filter((player) => player.name !== window.sessionStorage.getItem("userName"));
       if (nextProps.gameState._state.playerList.length === 1) {
-
+        return {
+          topLeftDeck: undefined,
+          middleDeck: undefined,
+          topRightDeck: undefined,
+          bottomLeftDeck: undefined,
+          bottomRightDeck: undefined
+        };
       }
       else if (nextProps.gameState._state.playerList.length === 2) {
         return {
-          middleDeck: opponents[0]
+          topLeftDeck: undefined,
+          middleDeck: opponents[0],
+          topRightDeck: undefined,
+          bottomLeftDeck: undefined,
+          bottomRightDeck: undefined
         };
       }
       else if (nextProps.gameState._state.playerList.length === 3) {
         return {
           topLeftDeck: opponents[0],
-          topRightDeck: opponents[1]
+          middleDeck: undefined,
+          topRightDeck: opponents[1],
+          bottomLeftDeck: undefined,
+          bottomRightDeck: undefined
         };
       }
       else if (nextProps.gameState._state.playerList.length === 4) {
         return {
+          topLeftDeck: undefined,
           middleDeck: opponents[0],
+          topRightDeck: undefined,
           bottomLeftDeck: opponents[1],
           bottomRightDeck: opponents[2]
         };
@@ -70,6 +85,7 @@ class Game extends Component {
       else if (nextProps.gameState._state.playerList.length === 5) {
         return {
           topLeftDeck: opponents[0],
+          middleDeck: undefined,
           topRightDeck: opponents[1],
           bottomLeftDeck: opponents[2],
           bottomRightDeck: opponents[3]
@@ -120,7 +136,7 @@ class Game extends Component {
     this.setState({
       width: window.innerWidth
     });
-    if (window.innerWidth >= 650 && window.innerWidth <= 900) {
+    if (window.innerWidth >= 600 && window.innerWidth <= 950) {
       this.setState({
         widthOk: true
       });
@@ -263,7 +279,7 @@ class Game extends Component {
           </div>
           <div className="row">
             <div className="col-3 opponent-box text-left">
-              {this.state.bottomLeftDeck.name !== undefined ?
+              {this.state.bottomLeftDeck !== undefined ?
                 <div>
                   <div className="left-stack-container text-center" >
                     <Stack randomOrientation={false}
@@ -285,7 +301,7 @@ class Game extends Component {
               <GameTable gameState = {this.props.gameState} />
             </div>
             <div className="col-3  opponent-box text-right">
-              {this.state.bottomRightDeck.name !== undefined ?
+              {this.state.bottomRightDeck !== undefined ?
                 <div>
                   <div className="right-stack-container text-right">
                     <Stack randomOrientation={false}
@@ -351,7 +367,9 @@ class Game extends Component {
         </div>
         <RankModal modalVisible = {this.state.modalVisible} 
          toggleModal = {this.toggleModal} 
-         clicked = { () => { this.handleFirstTurn(this.props.gameState, this.props.userSocket); } }/>
+         clicked = { () => { this.handleFirstTurn(this.props.gameState, this.props.userSocket); } }
+         handleRankChange = {this.handleRankChange}
+         rankValue = {this.state.rankValue}/>
         <EndModal hasEnded = {this.props.hasEnded} 
          winner = {this.props.winner}
          finish = {() => { this.setState({ confirmPrompt: false}); this.props.finish(); }} />

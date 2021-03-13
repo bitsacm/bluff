@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
 import Home from "./home/homeComponent";
-import Game from "./game/gameComponent";
 import Lobby from "./lobby/lobbyComponent";
 import ActGame from "./actGame/actGameComponent";
 

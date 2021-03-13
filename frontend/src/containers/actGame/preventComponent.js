@@ -10,8 +10,8 @@ class Prevent extends Component {
           <div className = "row justify-content-center prevent-row align-items-center">
             <div className = "col-11 col-md-6 col-lg-5">
               <p className = "join-imp-info">Return to appropriate window dimensions to continue playing the game. It ain't fun without the meet.<br/>
-                <span className = "join-imp-highlight">Current width :</span>  {this.props.width}px<br/>
-                <span className = "join-imp-highlight">Width range allowed :</span> 650-900px</p>
+                <span className = "join-imp-highlight">Current width :  {this.props.width}px</span><br/>
+                <span className = "join-imp-highlight">Width range allowed : 600-950px</span></p>
             </div>        
           </div>
         </div>

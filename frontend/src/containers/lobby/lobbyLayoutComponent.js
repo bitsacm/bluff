@@ -3,7 +3,8 @@ import styled, { keyframes } from 'styled-components';
 import cardBack from '../../assets/bluff card inverse.png';
 import card1 from '../../assets/Cards/CLUB-13-KING.svg';
 import card2 from '../../assets/Cards/DIAMOND-8.svg';
-import card3 from '../../assets/Cards/HEART-1.svg';
+import card4 from '../../assets/instructions.png';
+import Instructions from '../instructionModal';
 
 const Bg = styled.div`
   height: 100vh;
@@ -55,6 +56,7 @@ const Card = styled.img`
     opacity: 0;
     width: 0;
   }
+  cursor: ${(props) => props.clickable ? 'pointer' : ''};
   animation-name:  ${ (props) => Floating(props.degree, props.dist) }; 
   animation-duration: ${props => props.time}s; 
   animation-iteration-count: infinite; 
@@ -87,6 +89,20 @@ const CardStack = styled.img`
 `
 
 class LobbyLayout extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalVisible: false
+    };
+  }
+  
+  toggleModal = () => {
+    this.setState({
+      modalVisible: !this.state.modalVisible
+    });
+  }
+  
   render() {
     return(
       <Bg>
@@ -118,13 +134,15 @@ class LobbyLayout extends Component {
            zindex = {3}></Card> 
         </CardBox>
         <CardBox>
-          <Card src = {card3} 
+          <Card src = {card4} 
            dist = {2} 
            degree = {-110} 
            time = {3}
            top = {230}
            right = {-60}
-           zindex = {4}></Card>
+           zindex = {4}
+           clickable = {true}
+           onClick = {this.toggleModal}></Card>
         </CardBox>
         <CardBox>
           <CardStack src = {cardBack}
@@ -186,6 +204,7 @@ class LobbyLayout extends Component {
            time = {3.5}
           ></CardFixed>
         {this.props.children}
+        <Instructions modalVisible = {this.state.modalVisible} toggleModal = {this.toggleModal}/>
       </Bg>
     );
   }

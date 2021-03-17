@@ -7,6 +7,8 @@ import card6 from '../../assets/Cards/SPADE-7.svg';
 import card7 from '../../assets/instructions.png';
 import card8 from '../../assets/gitcard.png';
 import Instructions from '../instructionModal';
+import AcmSticks from '../../assets/acm-logo.png';
+import AcmText from '../../assets/acm.png'; 
 
 const Bg = styled.div`
   height: 100vh;
@@ -14,6 +16,12 @@ const Bg = styled.div`
   background-color: #E8E8E8 !important;
   z-index: -50;
 `
+const AcmBox = styled.div`
+  position: fixed;
+  top: 10px;
+  right: 10px;
+`
+
 const CardBox = styled.div`
   position: relative;
   height: 0 !important;
@@ -82,6 +90,11 @@ class HomeLayout extends Component {
   render() {
     return(
       <Bg>
+        <AcmBox className = "text-center">
+          <img src={AcmSticks} height={50} alt="wuj"/>
+          <br/>
+          <img src={AcmText} height={20} alt="wuj"/>
+        </AcmBox>
         <CardBox>
           <Card src = {card1} 
            dist = {3} 

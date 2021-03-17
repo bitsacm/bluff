@@ -5,6 +5,8 @@ import card1 from '../../assets/Cards/CLUB-13-KING.svg';
 import card2 from '../../assets/Cards/DIAMOND-8.svg';
 import card4 from '../../assets/instructions.png';
 import Instructions from '../instructionModal';
+import AcmSticks from '../../assets/acm-logo.png';
+import AcmText from '../../assets/acm.png'; 
 
 const Bg = styled.div`
   height: 100vh;
@@ -22,6 +24,11 @@ const CardBox = styled.div`
   right: 0;
   height: 0 !important;
   width: 0 !important;
+`
+const AcmBox = styled.div`
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
 `
 
 const CardFixed = styled.img`
@@ -106,6 +113,11 @@ class LobbyLayout extends Component {
   render() {
     return(
       <Bg>
+         <AcmBox className = "text-center">
+          <img src={AcmSticks} height={50} alt="wuj"/>
+          <br/>
+          <img src={AcmText} height={20} alt="wuj"/>
+        </AcmBox>
         <CardBox>
           <Card src = {cardBack} 
            dist = {3} 

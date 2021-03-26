@@ -245,6 +245,12 @@ class Game {
     this._lastTurn = []
     this._currentRank = undefined
     this._currentRound = []
+
+    const player = this.players.find(p => p.cards.length === 0)
+
+    if (player) {
+      this._win(player)
+    }
   }
 
   /**
